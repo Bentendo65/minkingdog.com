@@ -1,0 +1,18 @@
+/* Color Palette Variables Lifted Directly From Your Layout Code */
+:root {
+  --color-primary: #613EA3;     /* Main signature purple color */
+  --color-dark: #111111;        /* Clean baseline black text */
+  --color-muted: #444444;       /* Standard soft gray paragraph tone */
+  --color-border: #D4DBE0;      /* Standard panel division lines */
+  --color-bg-light: #F5F5F5;    /* Alternating layout module canvas fill */
+  --font-main: 'gdsherpa', Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: var(--color-dark);
+    font-family: var(--font-main);
+    -webkit-font-smoothing: antialiased;
+}
