@@ -1,22 +1,4316 @@
-document.getElementById('year').textContent = new Date().getFullYear();
-const toggle = document.querySelector('.menu-toggle');
-const links = document.querySelector('.nav-links');
-toggle?.addEventListener('click', () => links.classList.toggle('open'));
-links?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-const meter = document.querySelector('.meter span');
-const meterNumber = document.getElementById('meterNumber');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      meter.style.width = '73%';
-      let n = 0;
-      const tick = setInterval(() => {
-        n += 1;
-        meterNumber.textContent = `${Math.min(n,73)}%`;
-        if (n >= 73) clearInterval(tick);
-      }, 18);
-      observer.disconnect();
+<!DOCTYPE html>
+
+<!-- saved from url=(0042)https://6nth74t60w.preview.c37.airoapp.ai/ -->
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+
+
+<script>
+      (function () {
+        try {
+          var u = new URL(location.href);
+          if (u.searchParams.has('airoShareToken')) {
+            u.searchParams.delete('airoShareToken');
+            history.replaceState(null, '', u.toString());
+          }
+        } catch (e) {}
+      })();
+    </script>
+<meta content="same-origin" name="referrer"/>
+<link href="https://6nth74t60w.preview.c37.airoapp.ai/favicon.ico" rel="icon"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!--app-head-->
+
+
+<style data-vite-dev-id="/app/src/styles/globals.css" type="text/css">@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One:wght@400&family=Lato:wght@400;500&display=swap');
+
+*, ::before, ::after{
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop{
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+/*
+! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
+*/
+
+html,
+:host {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4; /* 3 */
+  font-family: var(--font-sans); /* 4 */
+  font-feature-settings: normal; /* 5 */
+  font-variation-settings: normal; /* 6 */
+  -webkit-tap-highlight-color: transparent; /* 7 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0; /* 1 */
+  line-height: inherit; /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono); /* 1 */
+  font-feature-settings: normal; /* 2 */
+  font-variation-settings: normal; /* 3 */
+  font-size: 1em; /* 4 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-feature-settings: inherit; /* 1 */
+  font-variation-settings: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
+  line-height: inherit; /* 1 */
+  letter-spacing: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none;
+}
+
+:root {
+    /* Core Colors */
+    --background: 130 30% 8%;
+    --foreground: 0 0% 96%;
+    --card: 130 30% 8%;
+    --card-foreground: 0 0% 96%;
+    --popover: 130 30% 8%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 37 91% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 67 91% 44%;
+    --secondary-foreground: 0 0% 29%;
+    --muted: 36 56% 4%;
+    --muted-foreground: 0 0% 96%;
+    --accent: 217 91% 44%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 37 66% 88%;
+    --input: 37 66% 88%;
+    --ring: 37 91% 44%;
+
+    /* Extended Colors */
+    --chart-1: 37 91% 74%;
+    --chart-2: 37 91% 58%;
+    --chart-3: 37 91% 44%;
+    --chart-4: 37 90% 29%;
+    --chart-5: 37 91% 14%;
+
+    /* Sidebar Colors */
+    --sidebar: 36 56% 4%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 37 91% 44%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 91% 44%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 37 66% 88%;
+    --sidebar-ring: 37 91% 44%;
+
+    /* Typography */
+    --font-sans: "Lato", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: "Alfa Slab One", fantasy;
+    --font-serif: ui-serif, Georgia, "Times New Roman", serif;
+    --font-mono: ui-monospace, "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+
+    /* Border Radius */
+    --radius: 0.5rem;
+
+    /* Shadows */
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  }
+
+*{
+  border-color: hsl(var(--border));
+}
+
+body{
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  
+    font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading) !important;
+  }
+
+.\!container{
+  width: 100% !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding-right: 2rem !important;
+  padding-left: 2rem !important;
+}
+
+.container{
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+@media (min-width: 1400px){
+
+  .\!container{
+    max-width: 1400px !important;
+  }
+
+  .container{
+    max-width: 1400px;
+  }
+}
+
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.pointer-events-none{
+  pointer-events: none;
+}
+
+.\!visible{
+  visibility: visible !important;
+}
+
+.visible{
+  visibility: visible;
+}
+
+.invisible{
+  visibility: hidden;
+}
+
+.collapse{
+  visibility: collapse;
+}
+
+.static{
+  position: static;
+}
+
+.fixed{
+  position: fixed;
+}
+
+.absolute{
+  position: absolute;
+}
+
+.relative{
+  position: relative;
+}
+
+.sticky{
+  position: sticky;
+}
+
+.inset-0{
+  inset: 0px;
+}
+
+.inset-x-0{
+  left: 0px;
+  right: 0px;
+}
+
+.inset-y-0{
+  top: 0px;
+  bottom: 0px;
+}
+
+.-bottom-12{
+  bottom: -3rem;
+}
+
+.-bottom-4{
+  bottom: -1rem;
+}
+
+.-left-12{
+  left: -3rem;
+}
+
+.-left-4{
+  left: -1rem;
+}
+
+.-right-1{
+  right: -0.25rem;
+}
+
+.-right-12{
+  right: -3rem;
+}
+
+.-right-4{
+  right: -1rem;
+}
+
+.-top-1{
+  top: -0.25rem;
+}
+
+.-top-12{
+  top: -3rem;
+}
+
+.-top-4{
+  top: -1rem;
+}
+
+.bottom-0{
+  bottom: 0px;
+}
+
+.bottom-10{
+  bottom: 2.5rem;
+}
+
+.left-0{
+  left: 0px;
+}
+
+.left-1\/2{
+  left: 50%;
+}
+
+.left-10{
+  left: 2.5rem;
+}
+
+.left-2{
+  left: 0.5rem;
+}
+
+.left-2\.5{
+  left: 0.625rem;
+}
+
+.left-\[50\%\]{
+  left: 50%;
+}
+
+.right-0{
+  right: 0px;
+}
+
+.right-10{
+  right: 2.5rem;
+}
+
+.right-4{
+  right: 1rem;
+}
+
+.top-0{
+  top: 0px;
+}
+
+.top-1\/2{
+  top: 50%;
+}
+
+.top-10{
+  top: 2.5rem;
+}
+
+.top-2\.5{
+  top: 0.625rem;
+}
+
+.top-4{
+  top: 1rem;
+}
+
+.top-\[1px\]{
+  top: 1px;
+}
+
+.top-\[50\%\]{
+  top: 50%;
+}
+
+.top-\[60\%\]{
+  top: 60%;
+}
+
+.top-full{
+  top: 100%;
+}
+
+.z-10{
+  z-index: 10;
+}
+
+.z-40{
+  z-index: 40;
+}
+
+.z-50{
+  z-index: 50;
+}
+
+.z-\[1\]{
+  z-index: 1;
+}
+
+.col-span-2{
+  grid-column: span 2 / span 2;
+}
+
+.row-span-2{
+  grid-row: span 2 / span 2;
+}
+
+.-mx-1{
+  margin-left: -0.25rem;
+  margin-right: -0.25rem;
+}
+
+.mx-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-1{
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.-ml-4{
+  margin-left: -1rem;
+}
+
+.-mt-4{
+  margin-top: -1rem;
+}
+
+.mb-1{
+  margin-bottom: 0.25rem;
+}
+
+.mb-10{
+  margin-bottom: 2.5rem;
+}
+
+.mb-12{
+  margin-bottom: 3rem;
+}
+
+.mb-16{
+  margin-bottom: 4rem;
+}
+
+.mb-2{
+  margin-bottom: 0.5rem;
+}
+
+.mb-3{
+  margin-bottom: 0.75rem;
+}
+
+.mb-4{
+  margin-bottom: 1rem;
+}
+
+.mb-5{
+  margin-bottom: 1.25rem;
+}
+
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+
+.mb-8{
+  margin-bottom: 2rem;
+}
+
+.ml-1{
+  margin-left: 0.25rem;
+}
+
+.ml-auto{
+  margin-left: auto;
+}
+
+.mr-2{
+  margin-right: 0.5rem;
+}
+
+.mt-1{
+  margin-top: 0.25rem;
+}
+
+.mt-1\.5{
+  margin-top: 0.375rem;
+}
+
+.mt-10{
+  margin-top: 2.5rem;
+}
+
+.mt-16{
+  margin-top: 4rem;
+}
+
+.mt-2{
+  margin-top: 0.5rem;
+}
+
+.mt-24{
+  margin-top: 6rem;
+}
+
+.mt-3{
+  margin-top: 0.75rem;
+}
+
+.mt-4{
+  margin-top: 1rem;
+}
+
+.mt-auto{
+  margin-top: auto;
+}
+
+.block{
+  display: block;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+.inline{
+  display: inline;
+}
+
+.flex{
+  display: flex;
+}
+
+.inline-flex{
+  display: inline-flex;
+}
+
+.table{
+  display: table;
+}
+
+.grid{
+  display: grid;
+}
+
+.list-item{
+  display: list-item;
+}
+
+.hidden{
+  display: none;
+}
+
+.aspect-\[16\/9\]{
+  aspect-ratio: 16/9;
+}
+
+.aspect-\[21\/7\]{
+  aspect-ratio: 21/7;
+}
+
+.aspect-\[3\/4\]{
+  aspect-ratio: 3/4;
+}
+
+.aspect-\[4\/3\]{
+  aspect-ratio: 4/3;
+}
+
+.aspect-square{
+  aspect-ratio: 1 / 1;
+}
+
+.size-4{
+  width: 1rem;
+  height: 1rem;
+}
+
+.size-\[--cell-size\]{
+  width: var(--cell-size);
+  height: var(--cell-size);
+}
+
+.h-1\.5{
+  height: 0.375rem;
+}
+
+.h-10{
+  height: 2.5rem;
+}
+
+.h-11{
+  height: 2.75rem;
+}
+
+.h-12{
+  height: 3rem;
+}
+
+.h-14{
+  height: 3.5rem;
+}
+
+.h-2{
+  height: 0.5rem;
+}
+
+.h-2\.5{
+  height: 0.625rem;
+}
+
+.h-20{
+  height: 5rem;
+}
+
+.h-3{
+  height: 0.75rem;
+}
+
+.h-3\.5{
+  height: 0.875rem;
+}
+
+.h-32{
+  height: 8rem;
+}
+
+.h-4{
+  height: 1rem;
+}
+
+.h-40{
+  height: 10rem;
+}
+
+.h-5{
+  height: 1.25rem;
+}
+
+.h-6{
+  height: 1.5rem;
+}
+
+.h-8{
+  height: 2rem;
+}
+
+.h-9{
+  height: 2.25rem;
+}
+
+.h-\[--cell-size\]{
+  height: var(--cell-size);
+}
+
+.h-\[1px\]{
+  height: 1px;
+}
+
+.h-\[var\(--radix-navigation-menu-viewport-height\)\]{
+  height: var(--radix-navigation-menu-viewport-height);
+}
+
+.h-\[var\(--radix-select-trigger-height\)\]{
+  height: var(--radix-select-trigger-height);
+}
+
+.h-auto{
+  height: auto;
+}
+
+.h-full{
+  height: 100%;
+}
+
+.h-px{
+  height: 1px;
+}
+
+.h-screen{
+  height: 100vh;
+}
+
+.max-h-\[--radix-context-menu-content-available-height\]{
+  max-height: var(--radix-context-menu-content-available-height);
+}
+
+.max-h-\[--radix-select-content-available-height\]{
+  max-height: var(--radix-select-content-available-height);
+}
+
+.max-h-\[300px\]{
+  max-height: 300px;
+}
+
+.max-h-\[var\(--radix-dropdown-menu-content-available-height\)\]{
+  max-height: var(--radix-dropdown-menu-content-available-height);
+}
+
+.min-h-\[600px\]{
+  min-height: 600px;
+}
+
+.min-h-\[80px\]{
+  min-height: 80px;
+}
+
+.min-h-screen{
+  min-height: 100vh;
+}
+
+.w-10{
+  width: 2.5rem;
+}
+
+.w-11{
+  width: 2.75rem;
+}
+
+.w-12{
+  width: 3rem;
+}
+
+.w-2{
+  width: 0.5rem;
+}
+
+.w-2\.5{
+  width: 0.625rem;
+}
+
+.w-24{
+  width: 6rem;
+}
+
+.w-3{
+  width: 0.75rem;
+}
+
+.w-3\.5{
+  width: 0.875rem;
+}
+
+.w-3\/4{
+  width: 75%;
+}
+
+.w-32{
+  width: 8rem;
+}
+
+.w-4{
+  width: 1rem;
+}
+
+.w-40{
+  width: 10rem;
+}
+
+.w-5{
+  width: 1.25rem;
+}
+
+.w-56{
+  width: 14rem;
+}
+
+.w-6{
+  width: 1.5rem;
+}
+
+.w-64{
+  width: 16rem;
+}
+
+.w-72{
+  width: 18rem;
+}
+
+.w-8{
+  width: 2rem;
+}
+
+.w-9{
+  width: 2.25rem;
+}
+
+.w-\[--cell-size\]{
+  width: var(--cell-size);
+}
+
+.w-\[100px\]{
+  width: 100px;
+}
+
+.w-\[1px\]{
+  width: 1px;
+}
+
+.w-auto{
+  width: auto;
+}
+
+.w-fit{
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.w-full{
+  width: 100%;
+}
+
+.w-max{
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.w-px{
+  width: 1px;
+}
+
+.min-w-0{
+  min-width: 0px;
+}
+
+.min-w-10{
+  min-width: 2.5rem;
+}
+
+.min-w-11{
+  min-width: 2.75rem;
+}
+
+.min-w-9{
+  min-width: 2.25rem;
+}
+
+.min-w-\[--cell-size\]{
+  min-width: var(--cell-size);
+}
+
+.min-w-\[12rem\]{
+  min-width: 12rem;
+}
+
+.min-w-\[20px\]{
+  min-width: 20px;
+}
+
+.min-w-\[8rem\]{
+  min-width: 8rem;
+}
+
+.min-w-\[var\(--radix-select-trigger-width\)\]{
+  min-width: var(--radix-select-trigger-width);
+}
+
+.max-w-2xl{
+  max-width: 42rem;
+}
+
+.max-w-4xl{
+  max-width: 56rem;
+}
+
+.max-w-5xl{
+  max-width: 64rem;
+}
+
+.max-w-6xl{
+  max-width: 72rem;
+}
+
+.max-w-7xl{
+  max-width: 80rem;
+}
+
+.max-w-full{
+  max-width: 100%;
+}
+
+.max-w-lg{
+  max-width: 32rem;
+}
+
+.max-w-max{
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+
+.max-w-md{
+  max-width: 28rem;
+}
+
+.max-w-screen-2xl{
+  max-width: 1536px;
+}
+
+.max-w-screen-lg{
+  max-width: 1024px;
+}
+
+.max-w-screen-md{
+  max-width: 768px;
+}
+
+.max-w-screen-sm{
+  max-width: 640px;
+}
+
+.max-w-screen-xl{
+  max-width: 1280px;
+}
+
+.max-w-xl{
+  max-width: 36rem;
+}
+
+.flex-1{
+  flex: 1 1 0%;
+}
+
+.flex-shrink-0{
+  flex-shrink: 0;
+}
+
+.shrink-0{
+  flex-shrink: 0;
+}
+
+.grow{
+  flex-grow: 1;
+}
+
+.grow-0{
+  flex-grow: 0;
+}
+
+.basis-full{
+  flex-basis: 100%;
+}
+
+.caption-bottom{
+  caption-side: bottom;
+}
+
+.border-collapse{
+  border-collapse: collapse;
+}
+
+.origin-\[--radix-context-menu-content-transform-origin\]{
+  transform-origin: var(--radix-context-menu-content-transform-origin);
+}
+
+.origin-\[--radix-dropdown-menu-content-transform-origin\]{
+  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
+}
+
+.origin-\[--radix-hover-card-content-transform-origin\]{
+  transform-origin: var(--radix-hover-card-content-transform-origin);
+}
+
+.origin-\[--radix-menubar-content-transform-origin\]{
+  transform-origin: var(--radix-menubar-content-transform-origin);
+}
+
+.origin-\[--radix-popover-content-transform-origin\]{
+  transform-origin: var(--radix-popover-content-transform-origin);
+}
+
+.origin-\[--radix-select-content-transform-origin\]{
+  transform-origin: var(--radix-select-content-transform-origin);
+}
+
+.origin-\[--radix-tooltip-content-transform-origin\]{
+  transform-origin: var(--radix-tooltip-content-transform-origin);
+}
+
+.-translate-x-1\/2{
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-x-full{
+  --tw-translate-x: -100%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-y-1\/2{
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-x-0{
+  --tw-translate-x: 0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-x-\[-50\%\]{
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-\[-50\%\]{
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-45{
+  --tw-rotate: 45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-90{
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-\[-15deg\]{
+  --tw-rotate: -15deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-\[15deg\]{
+  --tw-rotate: 15deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.scale-110{
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.transform{
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes pulse{
+
+  50%{
+    opacity: .5;
+  }
+}
+
+.animate-pulse{
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes spin{
+
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin{
+  animation: spin 1s linear infinite;
+}
+
+.cursor-default{
+  cursor: default;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.touch-none{
+  touch-action: none;
+}
+
+.select-none{
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.resize-none{
+  resize: none;
+}
+
+.resize{
+  resize: both;
+}
+
+.list-decimal{
+  list-style-type: decimal;
+}
+
+.list-disc{
+  list-style-type: disc;
+}
+
+.list-none{
+  list-style-type: none;
+}
+
+.grid-cols-1{
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.flex-row{
+  flex-direction: row;
+}
+
+.flex-col{
+  flex-direction: column;
+}
+
+.flex-col-reverse{
+  flex-direction: column-reverse;
+}
+
+.flex-wrap{
+  flex-wrap: wrap;
+}
+
+.items-start{
+  align-items: flex-start;
+}
+
+.items-end{
+  align-items: flex-end;
+}
+
+.items-center{
+  align-items: center;
+}
+
+.items-baseline{
+  align-items: baseline;
+}
+
+.items-stretch{
+  align-items: stretch;
+}
+
+.justify-end{
+  justify-content: flex-end;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.justify-between{
+  justify-content: space-between;
+}
+
+.gap-1{
+  gap: 0.25rem;
+}
+
+.gap-1\.5{
+  gap: 0.375rem;
+}
+
+.gap-12{
+  gap: 3rem;
+}
+
+.gap-2{
+  gap: 0.5rem;
+}
+
+.gap-3{
+  gap: 0.75rem;
+}
+
+.gap-4{
+  gap: 1rem;
+}
+
+.gap-6{
+  gap: 1.5rem;
+}
+
+.gap-8{
+  gap: 2rem;
+}
+
+.space-x-1 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-1 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+
+.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.375rem * var(--tw-space-y-reverse));
+}
+
+.space-y-2 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.space-y-3 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+
+.space-y-4 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.space-y-8 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+
+.overflow-auto{
+  overflow: auto;
+}
+
+.overflow-hidden{
+  overflow: hidden;
+}
+
+.overflow-y-auto{
+  overflow-y: auto;
+}
+
+.overflow-x-hidden{
+  overflow-x: hidden;
+}
+
+.truncate{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.whitespace-nowrap{
+  white-space: nowrap;
+}
+
+.break-words{
+  overflow-wrap: break-word;
+}
+
+.rounded{
+  border-radius: 0.25rem;
+}
+
+.rounded-2xl{
+  border-radius: 1rem;
+}
+
+.rounded-3xl{
+  border-radius: 1.5rem;
+}
+
+.rounded-\[inherit\]{
+  border-radius: inherit;
+}
+
+.rounded-full{
+  border-radius: 9999px;
+}
+
+.rounded-lg{
+  border-radius: var(--radius);
+}
+
+.rounded-md{
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.rounded-none{
+  border-radius: 0px;
+}
+
+.rounded-sm{
+  border-radius: calc(var(--radius) - 4px);
+}
+
+.rounded-xl{
+  border-radius: 0.75rem;
+}
+
+.rounded-l-md{
+  border-top-left-radius: calc(var(--radius) - 2px);
+  border-bottom-left-radius: calc(var(--radius) - 2px);
+}
+
+.rounded-r-md{
+  border-top-right-radius: calc(var(--radius) - 2px);
+  border-bottom-right-radius: calc(var(--radius) - 2px);
+}
+
+.rounded-t-\[10px\]{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.rounded-tl-sm{
+  border-top-left-radius: calc(var(--radius) - 4px);
+}
+
+.border{
+  border-width: 1px;
+}
+
+.border-2{
+  border-width: 2px;
+}
+
+.border-y{
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.border-b{
+  border-bottom-width: 1px;
+}
+
+.border-l{
+  border-left-width: 1px;
+}
+
+.border-r{
+  border-right-width: 1px;
+}
+
+.border-t{
+  border-top-width: 1px;
+}
+
+.border-amber-800\/30{
+  border-color: rgb(146 64 14 / 0.3);
+}
+
+.border-border\/20{
+  border-color: hsl(var(--border) / 0.2);
+}
+
+.border-border\/40{
+  border-color: hsl(var(--border) / 0.4);
+}
+
+.border-destructive\/50{
+  border-color: hsl(var(--destructive) / 0.5);
+}
+
+.border-emerald-700\/30{
+  border-color: rgb(4 120 87 / 0.3);
+}
+
+.border-gray-200{
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+}
+
+.border-gray-300{
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+}
+
+.border-input{
+  border-color: hsl(var(--input));
+}
+
+.border-primary{
+  border-color: hsl(var(--primary));
+}
+
+.border-primary\/30{
+  border-color: hsl(var(--primary) / 0.3);
+}
+
+.border-transparent{
+  border-color: transparent;
+}
+
+.border-l-transparent{
+  border-left-color: transparent;
+}
+
+.border-t-transparent{
+  border-top-color: transparent;
+}
+
+.bg-\[\#0a0f0b\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(10 15 11 / var(--tw-bg-opacity, 1));
+}
+
+.bg-accent{
+  background-color: hsl(var(--accent));
+}
+
+.bg-amber-800\/40{
+  background-color: rgb(146 64 14 / 0.4);
+}
+
+.bg-amber-950\/30{
+  background-color: rgb(69 26 3 / 0.3);
+}
+
+.bg-background{
+  background-color: hsl(var(--background));
+}
+
+.bg-background\/90{
+  background-color: hsl(var(--background) / 0.9);
+}
+
+.bg-black\/50{
+  background-color: rgb(0 0 0 / 0.5);
+}
+
+.bg-black\/80{
+  background-color: rgb(0 0 0 / 0.8);
+}
+
+.bg-border{
+  background-color: hsl(var(--border));
+}
+
+.bg-border\/30{
+  background-color: hsl(var(--border) / 0.3);
+}
+
+.bg-card{
+  background-color: hsl(var(--card));
+}
+
+.bg-destructive{
+  background-color: hsl(var(--destructive));
+}
+
+.bg-emerald-800\/40{
+  background-color: rgb(6 95 70 / 0.4);
+}
+
+.bg-emerald-950\/40{
+  background-color: rgb(2 44 34 / 0.4);
+}
+
+.bg-foreground{
+  background-color: hsl(var(--foreground));
+}
+
+.bg-foreground\/10{
+  background-color: hsl(var(--foreground) / 0.1);
+}
+
+.bg-foreground\/5{
+  background-color: hsl(var(--foreground) / 0.05);
+}
+
+.bg-gray-100{
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+}
+
+.bg-gray-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
+}
+
+.bg-gray-50{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+}
+
+.bg-gray-50\/50{
+  background-color: rgb(249 250 251 / 0.5);
+}
+
+.bg-muted{
+  background-color: hsl(var(--muted));
+}
+
+.bg-muted\/50{
+  background-color: hsl(var(--muted) / 0.5);
+}
+
+.bg-popover{
+  background-color: hsl(var(--popover));
+}
+
+.bg-primary{
+  background-color: hsl(var(--primary));
+}
+
+.bg-red-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
+}
+
+.bg-secondary{
+  background-color: hsl(var(--secondary));
+}
+
+.bg-transparent{
+  background-color: transparent;
+}
+
+.bg-white{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.bg-white\/10{
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+.bg-gradient-to-b{
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-r{
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-t{
+  background-image: linear-gradient(to top, var(--tw-gradient-stops));
+}
+
+.from-amber-950\/10{
+  --tw-gradient-from: rgb(69 26 3 / 0.1) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(69 26 3 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-amber-950\/40{
+  --tw-gradient-from: rgb(69 26 3 / 0.4) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(69 26 3 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-background{
+  --tw-gradient-from: hsl(var(--background)) var(--tw-gradient-from-position);
+  --tw-gradient-to: hsl(var(--background) / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-black\/50{
+  --tw-gradient-from: rgb(0 0 0 / 0.5) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-black\/70{
+  --tw-gradient-from: rgb(0 0 0 / 0.7) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-black\/80{
+  --tw-gradient-from: rgb(0 0 0 / 0.8) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-primary\/70{
+  --tw-gradient-from: hsl(var(--primary) / 0.7) var(--tw-gradient-from-position);
+  --tw-gradient-to: hsl(var(--primary) / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-white\/40{
+  --tw-gradient-from: rgb(255 255 255 / 0.4) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.via-black\/20{
+  --tw-gradient-to: rgb(0 0 0 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(0 0 0 / 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-black\/40{
+  --tw-gradient-to: rgb(0 0 0 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(0 0 0 / 0.4) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-emerald-950\/60{
+  --tw-gradient-to: rgb(2 44 34 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(2 44 34 / 0.6) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-transparent{
+  --tw-gradient-to: rgb(0 0 0 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), transparent var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.to-amber-950\/10{
+  --tw-gradient-to: rgb(69 26 3 / 0.1) var(--tw-gradient-to-position);
+}
+
+.to-amber-950\/20{
+  --tw-gradient-to: rgb(69 26 3 / 0.2) var(--tw-gradient-to-position);
+}
+
+.to-background{
+  --tw-gradient-to: hsl(var(--background)) var(--tw-gradient-to-position);
+}
+
+.to-muted\/20{
+  --tw-gradient-to: hsl(var(--muted) / 0.2) var(--tw-gradient-to-position);
+}
+
+.to-primary{
+  --tw-gradient-to: hsl(var(--primary)) var(--tw-gradient-to-position);
+}
+
+.to-transparent{
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+}
+
+.fill-current{
+  fill: currentColor;
+}
+
+.object-contain{
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.object-cover{
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.object-top{
+  -o-object-position: top;
+     object-position: top;
+}
+
+.p-0{
+  padding: 0px;
+}
+
+.p-1{
+  padding: 0.25rem;
+}
+
+.p-2{
+  padding: 0.5rem;
+}
+
+.p-3{
+  padding: 0.75rem;
+}
+
+.p-4{
+  padding: 1rem;
+}
+
+.p-5{
+  padding: 1.25rem;
+}
+
+.p-6{
+  padding: 1.5rem;
+}
+
+.p-8{
+  padding: 2rem;
+}
+
+.p-\[1px\]{
+  padding: 1px;
+}
+
+.px-1{
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.px-2{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.px-2\.5{
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.px-3{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.px-4{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-5{
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.px-6{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.px-8{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.px-\[--cell-size\]{
+  padding-left: var(--cell-size);
+  padding-right: var(--cell-size);
+}
+
+.py-0\.5{
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+.py-1{
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.py-1\.5{
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
+.py-10{
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.py-16{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.py-2{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.py-24{
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.py-3{
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.py-4{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.pb-3{
+  padding-bottom: 0.75rem;
+}
+
+.pb-4{
+  padding-bottom: 1rem;
+}
+
+.pl-2{
+  padding-left: 0.5rem;
+}
+
+.pl-2\.5{
+  padding-left: 0.625rem;
+}
+
+.pl-4{
+  padding-left: 1rem;
+}
+
+.pl-6{
+  padding-left: 1.5rem;
+}
+
+.pl-8{
+  padding-left: 2rem;
+}
+
+.pr-1{
+  padding-right: 0.25rem;
+}
+
+.pr-2{
+  padding-right: 0.5rem;
+}
+
+.pr-2\.5{
+  padding-right: 0.625rem;
+}
+
+.pr-3{
+  padding-right: 0.75rem;
+}
+
+.pt-0{
+  padding-top: 0px;
+}
+
+.pt-4{
+  padding-top: 1rem;
+}
+
+.text-left{
+  text-align: left;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text-right{
+  text-align: right;
+}
+
+.text-justify{
+  text-align: justify;
+}
+
+.align-middle{
+  vertical-align: middle;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-5xl{
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text-6xl{
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-7xl{
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.text-8xl{
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.text-9xl{
+  font-size: 8rem;
+  line-height: 1;
+}
+
+.text-\[0\.8rem\]{
+  font-size: 0.8rem;
+}
+
+.text-\[10px\]{
+  font-size: 10px;
+}
+
+.text-base{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-sm{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-xs{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.font-bold{
+  font-weight: 700;
+}
+
+.font-medium{
+  font-weight: 500;
+}
+
+.font-normal{
+  font-weight: 400;
+}
+
+.font-semibold{
+  font-weight: 600;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.lowercase{
+  text-transform: lowercase;
+}
+
+.italic{
+  font-style: italic;
+}
+
+.tabular-nums{
+  --tw-numeric-spacing: tabular-nums;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+}
+
+.leading-none{
+  line-height: 1;
+}
+
+.leading-relaxed{
+  line-height: 1.625;
+}
+
+.leading-tight{
+  line-height: 1.25;
+}
+
+.tracking-\[0\.25em\]{
+  letter-spacing: 0.25em;
+}
+
+.tracking-\[0\.35em\]{
+  letter-spacing: 0.35em;
+}
+
+.tracking-\[0\.3em\]{
+  letter-spacing: 0.3em;
+}
+
+.tracking-\[0\.4em\]{
+  letter-spacing: 0.4em;
+}
+
+.tracking-tight{
+  letter-spacing: -0.025em;
+}
+
+.tracking-wide{
+  letter-spacing: 0.025em;
+}
+
+.tracking-widest{
+  letter-spacing: 0.1em;
+}
+
+.text-\[\<length\>\]{
+  color: <length>;
+}
+
+.text-accent-foreground{
+  color: hsl(var(--accent-foreground));
+}
+
+.text-amber-400{
+  --tw-text-opacity: 1;
+  color: rgb(251 191 36 / var(--tw-text-opacity, 1));
+}
+
+.text-amber-400\/70{
+  color: rgb(251 191 36 / 0.7);
+}
+
+.text-card-foreground{
+  color: hsl(var(--card-foreground));
+}
+
+.text-current{
+  color: currentColor;
+}
+
+.text-destructive{
+  color: hsl(var(--destructive));
+}
+
+.text-destructive-foreground{
+  color: hsl(var(--destructive-foreground));
+}
+
+.text-emerald-400{
+  --tw-text-opacity: 1;
+  color: rgb(52 211 153 / var(--tw-text-opacity, 1));
+}
+
+.text-emerald-400\/70{
+  color: rgb(52 211 153 / 0.7);
+}
+
+.text-foreground{
+  color: hsl(var(--foreground));
+}
+
+.text-foreground\/25{
+  color: hsl(var(--foreground) / 0.25);
+}
+
+.text-foreground\/30{
+  color: hsl(var(--foreground) / 0.3);
+}
+
+.text-foreground\/40{
+  color: hsl(var(--foreground) / 0.4);
+}
+
+.text-foreground\/60{
+  color: hsl(var(--foreground) / 0.6);
+}
+
+.text-foreground\/70{
+  color: hsl(var(--foreground) / 0.7);
+}
+
+.text-foreground\/80{
+  color: hsl(var(--foreground) / 0.8);
+}
+
+.text-foreground\/90{
+  color: hsl(var(--foreground) / 0.9);
+}
+
+.text-gray-400{
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-500{
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-600{
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-700{
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-900{
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}
+
+.text-muted-foreground{
+  color: hsl(var(--muted-foreground));
+}
+
+.text-popover-foreground{
+  color: hsl(var(--popover-foreground));
+}
+
+.text-primary{
+  color: hsl(var(--primary));
+}
+
+.text-primary-foreground{
+  color: hsl(var(--primary-foreground));
+}
+
+.text-primary\/20{
+  color: hsl(var(--primary) / 0.2);
+}
+
+.text-primary\/30{
+  color: hsl(var(--primary) / 0.3);
+}
+
+.text-primary\/50{
+  color: hsl(var(--primary) / 0.5);
+}
+
+.text-secondary-foreground{
+  color: hsl(var(--secondary-foreground));
+}
+
+.text-white{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.text-white\/40{
+  color: rgb(255 255 255 / 0.4);
+}
+
+.text-white\/70{
+  color: rgb(255 255 255 / 0.7);
+}
+
+.text-white\/80{
+  color: rgb(255 255 255 / 0.8);
+}
+
+.text-white\/90{
+  color: rgb(255 255 255 / 0.9);
+}
+
+.underline{
+  text-decoration-line: underline;
+}
+
+.line-through{
+  text-decoration-line: line-through;
+}
+
+.underline-offset-4{
+  text-underline-offset: 4px;
+}
+
+.opacity-0{
+  opacity: 0;
+}
+
+.opacity-10{
+  opacity: 0.1;
+}
+
+.opacity-20{
+  opacity: 0.2;
+}
+
+.opacity-50{
+  opacity: 0.5;
+}
+
+.opacity-60{
+  opacity: 0.6;
+}
+
+.opacity-70{
+  opacity: 0.7;
+}
+
+.opacity-80{
+  opacity: 0.8;
+}
+
+.shadow{
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-2xl{
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-lg{
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-md{
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-sm{
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-black\/50{
+  --tw-shadow-color: rgb(0 0 0 / 0.5);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.outline-none{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.outline{
+  outline-style: solid;
+}
+
+.ring-0{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.ring-2{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.ring-ring{
+  --tw-ring-color: hsl(var(--ring));
+}
+
+.ring-offset-background{
+  --tw-ring-offset-color: hsl(var(--background));
+}
+
+.blur{
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.blur-3xl{
+  --tw-blur: blur(64px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.filter{
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.backdrop-blur-md{
+  --tw-backdrop-blur: blur(12px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.backdrop-filter{
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.transition{
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-all{
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-colors{
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-opacity{
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-shadow{
+  transition-property: box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-transform{
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-1000{
+  transition-duration: 1000ms;
+}
+
+.duration-200{
+  transition-duration: 200ms;
+}
+
+.duration-300{
+  transition-duration: 300ms;
+}
+
+.duration-500{
+  transition-duration: 500ms;
+}
+
+.ease-in{
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.ease-in-out{
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ease-out{
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes enter{
+
+  from{
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0) scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1)) rotate(var(--tw-enter-rotate, 0));
+  }
+}
+
+@keyframes exit{
+
+  to{
+    opacity: var(--tw-exit-opacity, 1);
+    transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
+  }
+}
+
+.animate-in{
+  animation-name: enter;
+  animation-duration: 150ms;
+  --tw-enter-opacity: initial;
+  --tw-enter-scale: initial;
+  --tw-enter-rotate: initial;
+  --tw-enter-translate-x: initial;
+  --tw-enter-translate-y: initial;
+}
+
+.fade-in-0{
+  --tw-enter-opacity: 0;
+}
+
+.fade-in-80{
+  --tw-enter-opacity: 0.8;
+}
+
+.zoom-in-95{
+  --tw-enter-scale: .95;
+}
+
+.duration-1000{
+  animation-duration: 1000ms;
+}
+
+.duration-200{
+  animation-duration: 200ms;
+}
+
+.duration-300{
+  animation-duration: 300ms;
+}
+
+.duration-500{
+  animation-duration: 500ms;
+}
+
+.ease-in{
+  animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.ease-in-out{
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ease-out{
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.running{
+  animation-play-state: running;
+}
+
+.paused{
+  animation-play-state: paused;
+}
+
+.animate-in {
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
     }
-  });
-});
-observer.observe(document.querySelector('.meter-wrap'));
+    to {
+      opacity: 1;
+    }
+  }
+
+.\[--cell-size\:2rem\]{
+  --cell-size: 2rem;
+}
+
+/* Custom utility classes */
+
+/* Unless told otherwise, keep it for smooth scrolling */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.file\:border-0::file-selector-button{
+  border-width: 0px;
+}
+
+.file\:bg-transparent::file-selector-button{
+  background-color: transparent;
+}
+
+.file\:text-sm::file-selector-button{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.file\:font-medium::file-selector-button{
+  font-weight: 500;
+}
+
+.file\:text-foreground::file-selector-button{
+  color: hsl(var(--foreground));
+}
+
+.placeholder\:text-muted-foreground::-moz-placeholder{
+  color: hsl(var(--muted-foreground));
+}
+
+.placeholder\:text-muted-foreground::placeholder{
+  color: hsl(var(--muted-foreground));
+}
+
+.after\:absolute::after{
+  content: var(--tw-content);
+  position: absolute;
+}
+
+.after\:inset-y-0::after{
+  content: var(--tw-content);
+  top: 0px;
+  bottom: 0px;
+}
+
+.after\:left-1\/2::after{
+  content: var(--tw-content);
+  left: 50%;
+}
+
+.after\:w-1::after{
+  content: var(--tw-content);
+  width: 0.25rem;
+}
+
+.after\:-translate-x-1\/2::after{
+  content: var(--tw-content);
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.first\:rounded-l-md:first-child{
+  border-top-left-radius: calc(var(--radius) - 2px);
+  border-bottom-left-radius: calc(var(--radius) - 2px);
+}
+
+.first\:border-l:first-child{
+  border-left-width: 1px;
+}
+
+.last\:rounded-r-md:last-child{
+  border-top-right-radius: calc(var(--radius) - 2px);
+  border-bottom-right-radius: calc(var(--radius) - 2px);
+}
+
+.hover\:scale-105:hover{
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:scale-\[1\.02\]:hover{
+  --tw-scale-x: 1.02;
+  --tw-scale-y: 1.02;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:border-primary\/40:hover{
+  border-color: hsl(var(--primary) / 0.4);
+}
+
+.hover\:border-primary\/60:hover{
+  border-color: hsl(var(--primary) / 0.6);
+}
+
+.hover\:bg-accent:hover{
+  background-color: hsl(var(--accent));
+}
+
+.hover\:bg-destructive\/80:hover{
+  background-color: hsl(var(--destructive) / 0.8);
+}
+
+.hover\:bg-destructive\/90:hover{
+  background-color: hsl(var(--destructive) / 0.9);
+}
+
+.hover\:bg-gray-100:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-gray-50:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-muted:hover{
+  background-color: hsl(var(--muted));
+}
+
+.hover\:bg-muted\/50:hover{
+  background-color: hsl(var(--muted) / 0.5);
+}
+
+.hover\:bg-primary\/10:hover{
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+.hover\:bg-primary\/80:hover{
+  background-color: hsl(var(--primary) / 0.8);
+}
+
+.hover\:bg-primary\/90:hover{
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+.hover\:bg-secondary\/80:hover{
+  background-color: hsl(var(--secondary) / 0.8);
+}
+
+.hover\:text-accent-foreground:hover{
+  color: hsl(var(--accent-foreground));
+}
+
+.hover\:text-foreground:hover{
+  color: hsl(var(--foreground));
+}
+
+.hover\:text-gray-900:hover{
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-muted-foreground:hover{
+  color: hsl(var(--muted-foreground));
+}
+
+.hover\:text-primary:hover{
+  color: hsl(var(--primary));
+}
+
+.hover\:text-primary\/80:hover{
+  color: hsl(var(--primary) / 0.8);
+}
+
+.hover\:underline:hover{
+  text-decoration-line: underline;
+}
+
+.hover\:opacity-100:hover{
+  opacity: 1;
+}
+
+.hover\:shadow-lg:hover{
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.hover\:shadow-xl:hover{
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.focus\:border-transparent:focus{
+  border-color: transparent;
+}
+
+.focus\:bg-accent:focus{
+  background-color: hsl(var(--accent));
+}
+
+.focus\:bg-white:focus{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.focus\:text-accent-foreground:focus{
+  color: hsl(var(--accent-foreground));
+}
+
+.focus\:outline-none:focus{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus\:ring-2:focus{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:ring-gray-200:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity, 1));
+}
+
+.focus\:ring-ring:focus{
+  --tw-ring-color: hsl(var(--ring));
+}
+
+.focus\:ring-offset-2:focus{
+  --tw-ring-offset-width: 2px;
+}
+
+.focus-visible\:outline-none:focus-visible{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus-visible\:ring-1:focus-visible{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus-visible\:ring-2:focus-visible{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus-visible\:ring-ring:focus-visible{
+  --tw-ring-color: hsl(var(--ring));
+}
+
+.focus-visible\:ring-offset-1:focus-visible{
+  --tw-ring-offset-width: 1px;
+}
+
+.focus-visible\:ring-offset-2:focus-visible{
+  --tw-ring-offset-width: 2px;
+}
+
+.focus-visible\:ring-offset-background:focus-visible{
+  --tw-ring-offset-color: hsl(var(--background));
+}
+
+.disabled\:pointer-events-none:disabled{
+  pointer-events: none;
+}
+
+.disabled\:cursor-not-allowed:disabled{
+  cursor: not-allowed;
+}
+
+.disabled\:opacity-50:disabled{
+  opacity: 0.5;
+}
+
+.group:hover .group-hover\:scale-105{
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.group:hover .group-hover\:opacity-100{
+  opacity: 1;
+}
+
+.group.toaster .group-\[\.toaster\]\:border-border{
+  border-color: hsl(var(--border));
+}
+
+.group.toast .group-\[\.toast\]\:bg-muted{
+  background-color: hsl(var(--muted));
+}
+
+.group.toast .group-\[\.toast\]\:bg-primary{
+  background-color: hsl(var(--primary));
+}
+
+.group.toaster .group-\[\.toaster\]\:bg-background{
+  background-color: hsl(var(--background));
+}
+
+.group.toast .group-\[\.toast\]\:text-muted-foreground{
+  color: hsl(var(--muted-foreground));
+}
+
+.group.toast .group-\[\.toast\]\:text-primary-foreground{
+  color: hsl(var(--primary-foreground));
+}
+
+.group.toaster .group-\[\.toaster\]\:text-foreground{
+  color: hsl(var(--foreground));
+}
+
+.group.toaster .group-\[\.toaster\]\:shadow-lg{
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.peer:disabled ~ .peer-disabled\:cursor-not-allowed{
+  cursor: not-allowed;
+}
+
+.peer:disabled ~ .peer-disabled\:opacity-70{
+  opacity: 0.7;
+}
+
+.has-\[\:disabled\]\:opacity-50:has(:disabled){
+  opacity: 0.5;
+}
+
+.aria-disabled\:opacity-50[aria-disabled="true"]{
+  opacity: 0.5;
+}
+
+.aria-selected\:text-muted-foreground[aria-selected="true"]{
+  color: hsl(var(--muted-foreground));
+}
+
+.data-\[disabled\=true\]\:pointer-events-none[data-disabled="true"]{
+  pointer-events: none;
+}
+
+.data-\[disabled\]\:pointer-events-none[data-disabled]{
+  pointer-events: none;
+}
+
+.data-\[panel-group-direction\=vertical\]\:h-px[data-panel-group-direction="vertical"]{
+  height: 1px;
+}
+
+.data-\[panel-group-direction\=vertical\]\:w-full[data-panel-group-direction="vertical"]{
+  width: 100%;
+}
+
+.data-\[side\=bottom\]\:translate-y-1[data-side="bottom"]{
+  --tw-translate-y: 0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.data-\[side\=left\]\:-translate-x-1[data-side="left"]{
+  --tw-translate-x: -0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.data-\[side\=right\]\:translate-x-1[data-side="right"]{
+  --tw-translate-x: 0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.data-\[side\=top\]\:-translate-y-1[data-side="top"]{
+  --tw-translate-y: -0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.data-\[state\=checked\]\:translate-x-5[data-state="checked"]{
+  --tw-translate-x: 1.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.data-\[state\=unchecked\]\:translate-x-0[data-state="unchecked"]{
+  --tw-translate-x: 0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes accordion-up{
+
+  from{
+    height: var(--radix-accordion-content-height);
+  }
+
+  to{
+    height: 0;
+  }
+}
+
+.data-\[state\=closed\]\:animate-accordion-up[data-state="closed"]{
+  animation: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down{
+
+  from{
+    height: 0;
+  }
+
+  to{
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+.data-\[state\=open\]\:animate-accordion-down[data-state="open"]{
+  animation: accordion-down 0.2s ease-out;
+}
+
+.data-\[panel-group-direction\=vertical\]\:flex-col[data-panel-group-direction="vertical"]{
+  flex-direction: column;
+}
+
+.data-\[range-end\=true\]\:rounded-md[data-range-end="true"]{
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.data-\[range-middle\=true\]\:rounded-none[data-range-middle="true"]{
+  border-radius: 0px;
+}
+
+.data-\[range-start\=true\]\:rounded-md[data-range-start="true"]{
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.data-\[selected\=true\]\:rounded-none[data-selected="true"]{
+  border-radius: 0px;
+}
+
+.data-\[range-end\=true\]\:bg-primary[data-range-end="true"]{
+  background-color: hsl(var(--primary));
+}
+
+.data-\[range-middle\=true\]\:bg-accent[data-range-middle="true"]{
+  background-color: hsl(var(--accent));
+}
+
+.data-\[range-start\=true\]\:bg-primary[data-range-start="true"]{
+  background-color: hsl(var(--primary));
+}
+
+.data-\[selected-single\=true\]\:bg-primary[data-selected-single="true"]{
+  background-color: hsl(var(--primary));
+}
+
+.data-\[selected\=\'true\'\]\:bg-accent[data-selected='true']{
+  background-color: hsl(var(--accent));
+}
+
+.data-\[state\=active\]\:bg-background[data-state="active"]{
+  background-color: hsl(var(--background));
+}
+
+.data-\[state\=checked\]\:bg-primary[data-state="checked"]{
+  background-color: hsl(var(--primary));
+}
+
+.data-\[state\=on\]\:bg-accent[data-state="on"]{
+  background-color: hsl(var(--accent));
+}
+
+.data-\[state\=open\]\:bg-accent[data-state="open"]{
+  background-color: hsl(var(--accent));
+}
+
+.data-\[state\=open\]\:bg-accent\/50[data-state="open"]{
+  background-color: hsl(var(--accent) / 0.5);
+}
+
+.data-\[state\=open\]\:bg-secondary[data-state="open"]{
+  background-color: hsl(var(--secondary));
+}
+
+.data-\[state\=selected\]\:bg-muted[data-state="selected"]{
+  background-color: hsl(var(--muted));
+}
+
+.data-\[state\=unchecked\]\:bg-input[data-state="unchecked"]{
+  background-color: hsl(var(--input));
+}
+
+.data-\[placeholder\]\:text-muted-foreground[data-placeholder]{
+  color: hsl(var(--muted-foreground));
+}
+
+.data-\[range-end\=true\]\:text-primary-foreground[data-range-end="true"]{
+  color: hsl(var(--primary-foreground));
+}
+
+.data-\[range-middle\=true\]\:text-accent-foreground[data-range-middle="true"]{
+  color: hsl(var(--accent-foreground));
+}
+
+.data-\[range-start\=true\]\:text-primary-foreground[data-range-start="true"]{
+  color: hsl(var(--primary-foreground));
+}
+
+.data-\[selected-single\=true\]\:text-primary-foreground[data-selected-single="true"]{
+  color: hsl(var(--primary-foreground));
+}
+
+.data-\[selected\=true\]\:text-accent-foreground[data-selected="true"]{
+  color: hsl(var(--accent-foreground));
+}
+
+.data-\[state\=active\]\:text-foreground[data-state="active"]{
+  color: hsl(var(--foreground));
+}
+
+.data-\[state\=checked\]\:text-primary-foreground[data-state="checked"]{
+  color: hsl(var(--primary-foreground));
+}
+
+.data-\[state\=on\]\:text-accent-foreground[data-state="on"]{
+  color: hsl(var(--accent-foreground));
+}
+
+.data-\[state\=open\]\:text-accent-foreground[data-state="open"]{
+  color: hsl(var(--accent-foreground));
+}
+
+.data-\[state\=open\]\:text-muted-foreground[data-state="open"]{
+  color: hsl(var(--muted-foreground));
+}
+
+.data-\[disabled\=true\]\:opacity-50[data-disabled="true"]{
+  opacity: 0.5;
+}
+
+.data-\[disabled\]\:opacity-50[data-disabled]{
+  opacity: 0.5;
+}
+
+.data-\[state\=active\]\:shadow-sm[data-state="active"]{
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.data-\[state\=closed\]\:duration-300[data-state="closed"]{
+  transition-duration: 300ms;
+}
+
+.data-\[state\=open\]\:duration-500[data-state="open"]{
+  transition-duration: 500ms;
+}
+
+.data-\[motion\^\=from-\]\:animate-in[data-motion^="from-"]{
+  animation-name: enter;
+  animation-duration: 150ms;
+  --tw-enter-opacity: initial;
+  --tw-enter-scale: initial;
+  --tw-enter-rotate: initial;
+  --tw-enter-translate-x: initial;
+  --tw-enter-translate-y: initial;
+}
+
+.data-\[state\=open\]\:animate-in[data-state="open"]{
+  animation-name: enter;
+  animation-duration: 150ms;
+  --tw-enter-opacity: initial;
+  --tw-enter-scale: initial;
+  --tw-enter-rotate: initial;
+  --tw-enter-translate-x: initial;
+  --tw-enter-translate-y: initial;
+}
+
+.data-\[state\=visible\]\:animate-in[data-state="visible"]{
+  animation-name: enter;
+  animation-duration: 150ms;
+  --tw-enter-opacity: initial;
+  --tw-enter-scale: initial;
+  --tw-enter-rotate: initial;
+  --tw-enter-translate-x: initial;
+  --tw-enter-translate-y: initial;
+}
+
+.data-\[motion\^\=to-\]\:animate-out[data-motion^="to-"]{
+  animation-name: exit;
+  animation-duration: 150ms;
+  --tw-exit-opacity: initial;
+  --tw-exit-scale: initial;
+  --tw-exit-rotate: initial;
+  --tw-exit-translate-x: initial;
+  --tw-exit-translate-y: initial;
+}
+
+.data-\[state\=closed\]\:animate-out[data-state="closed"]{
+  animation-name: exit;
+  animation-duration: 150ms;
+  --tw-exit-opacity: initial;
+  --tw-exit-scale: initial;
+  --tw-exit-rotate: initial;
+  --tw-exit-translate-x: initial;
+  --tw-exit-translate-y: initial;
+}
+
+.data-\[state\=hidden\]\:animate-out[data-state="hidden"]{
+  animation-name: exit;
+  animation-duration: 150ms;
+  --tw-exit-opacity: initial;
+  --tw-exit-scale: initial;
+  --tw-exit-rotate: initial;
+  --tw-exit-translate-x: initial;
+  --tw-exit-translate-y: initial;
+}
+
+.data-\[motion\^\=from-\]\:fade-in[data-motion^="from-"]{
+  --tw-enter-opacity: 0;
+}
+
+.data-\[motion\^\=to-\]\:fade-out[data-motion^="to-"]{
+  --tw-exit-opacity: 0;
+}
+
+.data-\[state\=closed\]\:fade-out-0[data-state="closed"]{
+  --tw-exit-opacity: 0;
+}
+
+.data-\[state\=hidden\]\:fade-out[data-state="hidden"]{
+  --tw-exit-opacity: 0;
+}
+
+.data-\[state\=open\]\:fade-in-0[data-state="open"]{
+  --tw-enter-opacity: 0;
+}
+
+.data-\[state\=visible\]\:fade-in[data-state="visible"]{
+  --tw-enter-opacity: 0;
+}
+
+.data-\[state\=closed\]\:zoom-out-95[data-state="closed"]{
+  --tw-exit-scale: .95;
+}
+
+.data-\[state\=open\]\:zoom-in-90[data-state="open"]{
+  --tw-enter-scale: .9;
+}
+
+.data-\[state\=open\]\:zoom-in-95[data-state="open"]{
+  --tw-enter-scale: .95;
+}
+
+.data-\[motion\=from-end\]\:slide-in-from-right-52[data-motion="from-end"]{
+  --tw-enter-translate-x: 13rem;
+}
+
+.data-\[motion\=from-start\]\:slide-in-from-left-52[data-motion="from-start"]{
+  --tw-enter-translate-x: -13rem;
+}
+
+.data-\[motion\=to-end\]\:slide-out-to-right-52[data-motion="to-end"]{
+  --tw-exit-translate-x: 13rem;
+}
+
+.data-\[motion\=to-start\]\:slide-out-to-left-52[data-motion="to-start"]{
+  --tw-exit-translate-x: -13rem;
+}
+
+.data-\[side\=bottom\]\:slide-in-from-top-2[data-side="bottom"]{
+  --tw-enter-translate-y: -0.5rem;
+}
+
+.data-\[side\=left\]\:slide-in-from-right-2[data-side="left"]{
+  --tw-enter-translate-x: 0.5rem;
+}
+
+.data-\[side\=right\]\:slide-in-from-left-2[data-side="right"]{
+  --tw-enter-translate-x: -0.5rem;
+}
+
+.data-\[side\=top\]\:slide-in-from-bottom-2[data-side="top"]{
+  --tw-enter-translate-y: 0.5rem;
+}
+
+.data-\[state\=closed\]\:slide-out-to-bottom[data-state="closed"]{
+  --tw-exit-translate-y: 100%;
+}
+
+.data-\[state\=closed\]\:slide-out-to-left[data-state="closed"]{
+  --tw-exit-translate-x: -100%;
+}
+
+.data-\[state\=closed\]\:slide-out-to-left-1\/2[data-state="closed"]{
+  --tw-exit-translate-x: -50%;
+}
+
+.data-\[state\=closed\]\:slide-out-to-right[data-state="closed"]{
+  --tw-exit-translate-x: 100%;
+}
+
+.data-\[state\=closed\]\:slide-out-to-top[data-state="closed"]{
+  --tw-exit-translate-y: -100%;
+}
+
+.data-\[state\=closed\]\:slide-out-to-top-\[48\%\][data-state="closed"]{
+  --tw-exit-translate-y: -48%;
+}
+
+.data-\[state\=open\]\:slide-in-from-bottom[data-state="open"]{
+  --tw-enter-translate-y: 100%;
+}
+
+.data-\[state\=open\]\:slide-in-from-left[data-state="open"]{
+  --tw-enter-translate-x: -100%;
+}
+
+.data-\[state\=open\]\:slide-in-from-left-1\/2[data-state="open"]{
+  --tw-enter-translate-x: -50%;
+}
+
+.data-\[state\=open\]\:slide-in-from-right[data-state="open"]{
+  --tw-enter-translate-x: 100%;
+}
+
+.data-\[state\=open\]\:slide-in-from-top[data-state="open"]{
+  --tw-enter-translate-y: -100%;
+}
+
+.data-\[state\=open\]\:slide-in-from-top-\[48\%\][data-state="open"]{
+  --tw-enter-translate-y: -48%;
+}
+
+.data-\[state\=closed\]\:duration-300[data-state="closed"]{
+  animation-duration: 300ms;
+}
+
+.data-\[state\=open\]\:duration-500[data-state="open"]{
+  animation-duration: 500ms;
+}
+
+.data-\[motion\^\=from-\]\:animate-in[data-motion^="from-"] {
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+
+.data-\[state\=open\]\:animate-in[data-state="open"] {
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+
+.data-\[state\=visible\]\:animate-in[data-state="visible"] {
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+
+.data-\[motion\^\=from-\]\:fade-in[data-motion^="from-"] {
+    animation-name: fadeIn;
+  }
+
+.data-\[state\=visible\]\:fade-in[data-state="visible"] {
+    animation-name: fadeIn;
+  }
+
+.data-\[panel-group-direction\=vertical\]\:after\:left-0[data-panel-group-direction="vertical"]::after{
+  content: var(--tw-content);
+  left: 0px;
+}
+
+.data-\[panel-group-direction\=vertical\]\:after\:h-1[data-panel-group-direction="vertical"]::after{
+  content: var(--tw-content);
+  height: 0.25rem;
+}
+
+.data-\[panel-group-direction\=vertical\]\:after\:w-full[data-panel-group-direction="vertical"]::after{
+  content: var(--tw-content);
+  width: 100%;
+}
+
+.data-\[panel-group-direction\=vertical\]\:after\:-translate-y-1\/2[data-panel-group-direction="vertical"]::after{
+  content: var(--tw-content);
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.data-\[panel-group-direction\=vertical\]\:after\:translate-x-0[data-panel-group-direction="vertical"]::after{
+  content: var(--tw-content);
+  --tw-translate-x: 0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.data-\[state\=open\]\:hover\:bg-accent:hover[data-state="open"]{
+  background-color: hsl(var(--accent));
+}
+
+.data-\[state\=open\]\:focus\:bg-accent:focus[data-state="open"]{
+  background-color: hsl(var(--accent));
+}
+
+.group\/day[data-focused="true"] .group-data-\[focused\=true\]\/day\:relative{
+  position: relative;
+}
+
+.group\/day[data-focused="true"] .group-data-\[focused\=true\]\/day\:z-10{
+  z-index: 10;
+}
+
+.group[data-state="open"] .group-data-\[state\=open\]\:rotate-180{
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.group\/day[data-focused="true"] .group-data-\[focused\=true\]\/day\:border-ring{
+  border-color: hsl(var(--ring));
+}
+
+.group\/day[data-focused="true"] .group-data-\[focused\=true\]\/day\:ring-\[3px\]{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.group\/day[data-focused="true"] .group-data-\[focused\=true\]\/day\:ring-ring\/50{
+  --tw-ring-color: hsl(var(--ring) / 0.5);
+}
+
+@media (min-width: 640px){
+
+  .sm\:mt-0{
+    margin-top: 0px;
+  }
+
+  .sm\:max-w-sm{
+    max-width: 24rem;
+  }
+
+  .sm\:flex-row{
+    flex-direction: row;
+  }
+
+  .sm\:items-center{
+    align-items: center;
+  }
+
+  .sm\:justify-end{
+    justify-content: flex-end;
+  }
+
+  .sm\:gap-2\.5{
+    gap: 0.625rem;
+  }
+
+  .sm\:space-x-2 > :not([hidden]) ~ :not([hidden]){
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .sm\:rounded-lg{
+    border-radius: var(--radius);
+  }
+
+  .sm\:px-6{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:text-left{
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px){
+
+  .md\:absolute{
+    position: absolute;
+  }
+
+  .md\:col-span-1{
+    grid-column: span 1 / span 1;
+  }
+
+  .md\:row-span-2{
+    grid-row: span 2 / span 2;
+  }
+
+  .md\:flex{
+    display: flex;
+  }
+
+  .md\:hidden{
+    display: none;
+  }
+
+  .md\:aspect-\[21\/9\]{
+    aspect-ratio: 21/9;
+  }
+
+  .md\:aspect-auto{
+    aspect-ratio: auto;
+  }
+
+  .md\:w-\[var\(--radix-navigation-menu-viewport-width\)\]{
+    width: var(--radix-navigation-menu-viewport-width);
+  }
+
+  .md\:w-auto{
+    width: auto;
+  }
+
+  .md\:grid-cols-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:flex-row{
+    flex-direction: row;
+  }
+
+  .md\:text-2xl{
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .md\:text-3xl{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .md\:text-4xl{
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .md\:text-5xl{
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .md\:text-6xl{
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  .md\:text-8xl{
+    font-size: 6rem;
+    line-height: 1;
+  }
+
+  .md\:text-\[10rem\]{
+    font-size: 10rem;
+  }
+
+  .md\:text-sm{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .md\:text-xl{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px){
+
+  .lg\:static{
+    position: static;
+  }
+
+  .lg\:inset-0{
+    inset: 0px;
+  }
+
+  .lg\:block{
+    display: block;
+  }
+
+  .lg\:hidden{
+    display: none;
+  }
+
+  .lg\:translate-x-0{
+    --tw-translate-x: 0px;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\:gap-20{
+    gap: 5rem;
+  }
+
+  .lg\:p-6{
+    padding: 1.5rem;
+  }
+
+  .lg\:px-6{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .lg\:px-8{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .lg\:text-\[12rem\]{
+    font-size: 12rem;
+  }
+}
+
+@media (prefers-color-scheme: dark){
+
+  .dark\:border-destructive{
+    border-color: hsl(var(--destructive));
+  }
+}
+
+.\[\&\:first-child\[data-selected\=true\]_button\]\:rounded-l-md:first-child[data-selected=true] button{
+  border-top-left-radius: calc(var(--radius) - 2px);
+  border-bottom-left-radius: calc(var(--radius) - 2px);
+}
+
+.\[\&\:has\(\[role\=checkbox\]\)\]\:pr-0:has([role=checkbox]){
+  padding-right: 0px;
+}
+
+.\[\&\:last-child\[data-selected\=true\]_button\]\:rounded-r-md:last-child[data-selected=true] button{
+  border-top-right-radius: calc(var(--radius) - 2px);
+  border-bottom-right-radius: calc(var(--radius) - 2px);
+}
+
+.\[\&\>\*\]\:list-item>*{
+  display: list-item;
+}
+
+.\[\&\>span\]\:line-clamp-1>span{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.\[\&\>span\]\:text-xs>span{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.\[\&\>span\]\:opacity-70>span{
+  opacity: 0.7;
+}
+
+.\[\&\>svg\+div\]\:translate-y-\[-3px\]>svg+div{
+  --tw-translate-y: -3px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.\[\&\>svg\]\:absolute>svg{
+  position: absolute;
+}
+
+.\[\&\>svg\]\:left-4>svg{
+  left: 1rem;
+}
+
+.\[\&\>svg\]\:top-4>svg{
+  top: 1rem;
+}
+
+.\[\&\>svg\]\:size-3\.5>svg{
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.\[\&\>svg\]\:h-3\.5>svg{
+  height: 0.875rem;
+}
+
+.\[\&\>svg\]\:w-3\.5>svg{
+  width: 0.875rem;
+}
+
+.\[\&\>svg\]\:text-destructive>svg{
+  color: hsl(var(--destructive));
+}
+
+.\[\&\>svg\]\:text-foreground>svg{
+  color: hsl(var(--foreground));
+}
+
+.\[\&\>svg\]\:text-muted-foreground>svg{
+  color: hsl(var(--muted-foreground));
+}
+
+.\[\&\>svg\~\*\]\:pl-7>svg~*{
+  padding-left: 1.75rem;
+}
+
+.\[\&\>tr\]\:last\:border-b-0:last-child>tr{
+  border-bottom-width: 0px;
+}
+
+.\[\&\[data-panel-group-direction\=vertical\]\>div\]\:rotate-90[data-panel-group-direction=vertical]>div{
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.\[\&\[data-state\=open\]\>svg\]\:rotate-180[data-state=open]>svg{
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.\[\&_\[cmdk-group-heading\]\]\:px-2 [cmdk-group-heading]{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.\[\&_\[cmdk-group-heading\]\]\:py-1\.5 [cmdk-group-heading]{
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
+.\[\&_\[cmdk-group-heading\]\]\:text-xs [cmdk-group-heading]{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.\[\&_\[cmdk-group-heading\]\]\:font-medium [cmdk-group-heading]{
+  font-weight: 500;
+}
+
+.\[\&_\[cmdk-group-heading\]\]\:text-muted-foreground [cmdk-group-heading]{
+  color: hsl(var(--muted-foreground));
+}
+
+.\[\&_\[cmdk-group\]\:not\(\[hidden\]\)_\~\[cmdk-group\]\]\:pt-0 [cmdk-group]:not([hidden]) ~[cmdk-group]{
+  padding-top: 0px;
+}
+
+.\[\&_\[cmdk-group\]\]\:px-2 [cmdk-group]{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.\[\&_\[cmdk-input-wrapper\]_svg\]\:h-5 [cmdk-input-wrapper] svg{
+  height: 1.25rem;
+}
+
+.\[\&_\[cmdk-input-wrapper\]_svg\]\:w-5 [cmdk-input-wrapper] svg{
+  width: 1.25rem;
+}
+
+.\[\&_\[cmdk-input\]\]\:h-12 [cmdk-input]{
+  height: 3rem;
+}
+
+.\[\&_\[cmdk-item\]\]\:px-2 [cmdk-item]{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.\[\&_\[cmdk-item\]\]\:py-3 [cmdk-item]{
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.\[\&_\[cmdk-item\]_svg\]\:h-5 [cmdk-item] svg{
+  height: 1.25rem;
+}
+
+.\[\&_\[cmdk-item\]_svg\]\:w-5 [cmdk-item] svg{
+  width: 1.25rem;
+}
+
+.\[\&_p\]\:leading-relaxed p{
+  line-height: 1.625;
+}
+
+.\[\&_svg\]\:pointer-events-none svg{
+  pointer-events: none;
+}
+
+.\[\&_svg\]\:size-4 svg{
+  width: 1rem;
+  height: 1rem;
+}
+
+.\[\&_svg\]\:shrink-0 svg{
+  flex-shrink: 0;
+}
+
+.\[\&_tr\:last-child\]\:border-0 tr:last-child{
+  border-width: 0px;
+}
+
+.\[\&_tr\]\:border-b tr{
+  border-bottom-width: 1px;
+}
+
+[data-slot=card-content] .\[\[data-slot\=card-content\]_\&\]\:bg-transparent{
+  background-color: transparent;
+}
+
+[data-slot=popover-content] .\[\[data-slot\=popover-content\]_\&\]\:bg-transparent{
+  background-color: transparent;
+}
+</style><meta content="noindex, nofollow" name="robots"/><style id="airo-dev-tools-styles">
+    [data-airo-dev-tools] {
+      /* Fonts */
+      --font-heading: system-ui, sans-serif !important;
+      font-family: system-ui, sans-serif;
+
+      /* Brand/Primary Colors */
+      --color-primary: #6b46c1;
+      --color-primary-hover: #5a32b0;
+      --color-primary-light: #f5f3ff;
+
+      /* Interactive/Action Colors */
+      --color-interactive: #8b5cf6;
+      --color-interactive-hover: #2563eb;
+      --color-interactive-bg: #eff6ff;
+      --color-interactive-bg-hover: #dbeafe;
+      --color-interactive-border: #bfdbfe;
+      --color-interactive-border-hover: #93c5fd;
+
+      /* Status Colors */
+      --color-success: #059669;
+      --color-success-bg: #ecfdf5;
+      --color-success-bg-hover: #d1fae5;
+      --color-success-border: #a7f3d0;
+      --color-success-border-hover: #6ee7b7;
+      --color-error: #dc2626;
+      --color-error-gradient-start: #ef4444;
+      --color-error-gradient-end: #dc2626;
+      --color-warning: #d97706;
+
+      /* Neutral/Surface Colors */
+      --color-surface: #ffffff;
+      --color-surface-hover: #f9fafb;
+      --color-surface-overlay: rgba(0, 0, 0, 0.15);
+      --color-border: #d1d5db;
+      --color-border-light: #e5e7eb;
+
+      /* Text Colors */
+      --color-text-primary: #111111;
+      --color-text-secondary: #374151;
+      --color-text-tertiary: #6b7280;
+      --color-text-muted: #9ca3af;
+
+      /* Special Purpose */
+      --color-accent-purple: #8b5cf6;
+      --color-accent-purple-bg: #f5f3ff;
+      --color-accent-purple-bg-hover: #ede9fe;
+      --color-accent-purple-border: #ddd6fe;
+      --color-accent-purple-border-hover: #c4b5fd;
+      --color-accent-pink: #db2777;
+      --color-selection-outline: #10b981;
+
+      /* Color Palette (for ElementEditor presets) */
+      --color-black: #111827;
+      --color-gray-600: #4b5563;
+      --color-blue-600: #2563eb;
+      --color-purple-600: #9333ea;
+      --color-green-600: #16a34a;
+      --color-red-600: #dc2626;
+      --color-orange-600: #d97706;
+      --color-pink-600: #db2777;
+      --color-gray-100: #f3f4f6;
+      --color-blue-100: #dbeafe;
+      --color-purple-100: #e9d5ff;
+      --color-green-100: #dcfce7;
+      --color-red-100: #fee2e2;
+      --color-yellow-100: #fef3c7;
+      --color-pink-100: #fce7f3;
+    }
+
+    /* Editable compliance field spans (preview-only; never shipped to publish).
+       Templates vary (dark, light, colored backgrounds), so the highlight is
+       derived from currentColor — the page's own text color — rather than a
+       fixed palette. The page's text already contrasts with its background, so
+       a faint tint of that same color and a currentColor underline are
+       guaranteed to contrast too. The text color itself is NEVER overridden, so
+       the value stays as legible as the surrounding copy. */
+    .airo-editable-field {
+      background-color: color-mix(in srgb, currentColor 14%, transparent);
+      border-bottom: 1px dashed currentColor;
+      border-radius: 2px;
+      padding: 0 2px;
+      cursor: text;
+      transition: background-color 120ms ease;
+    }
+    .airo-editable-field:hover {
+      background-color: color-mix(in srgb, currentColor 24%, transparent);
+    }
+    .airo-editable-field::after {
+      content: "\270E";
+      font-size: 0.75em;
+      margin-left: 3px;
+      color: currentColor;
+      opacity: 0.65;
+      user-select: none;
+    }
+    .airo-editable-field:focus {
+      outline: 2px solid currentColor;
+      outline-offset: 1px;
+      background-color: color-mix(in srgb, currentColor 24%, transparent);
+    }
+    .airo-editable-field:focus::after { content: ""; }
+
+    /* Rejected input (failed data-type validation) — brief red flash. */
+    .airo-editable-field-invalid {
+      background-color: color-mix(in srgb, #dc2626 28%, transparent) !important;
+      border-bottom-color: #dc2626 !important;
+    }
+
+    /* us_states dropdown. Transparent chrome + currentColor so it inherits the
+       template's text color and stays legible on any background. The pencil
+       glyph is suppressed for select-backed fields. */
+    .airo-editable-field-select { padding: 0; }
+    .airo-editable-field-select::after { content: ""; }
+    .airo-state-select {
+      font: inherit;
+      color: currentColor;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px dashed currentColor;
+      padding: 0 18px 0 2px;
+      margin: 0;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='currentColor' stroke-width='1.5'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 2px center;
+    }
+    .airo-state-select:focus {
+      outline: 2px solid currentColor;
+      outline-offset: 1px;
+    }
+    /* Option list renders in the OS popup; force readable colors there. */
+    .airo-state-select option {
+      color: #111111;
+      background-color: #ffffff;
+    }
+
+    /* Per-section boolean toggle control. */
+    .airo-section-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin: 0 6px;
+      padding: 1px 8px;
+      font-family: system-ui, sans-serif;
+      font-size: 0.7rem;
+      line-height: 1.4;
+      color: #5a32b0;
+      background-color: #f5f3ff;
+      border: 1px solid #ddd6fe;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+    .airo-section-toggle[aria-pressed="true"] {
+      color: #ffffff;
+      background-color: #8b5cf6;
+      border-color: #8b5cf6;
+    }
+    .airo-section-toggle:hover {
+      border-color: #c4b5fd;
+    }
+  </style><title data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="bf619f" data-dev-line="580" data-rh="data-dev-file,data-dev-line,data-dev-id,data-dev-dynamic">Minky The Housewolfe — DDR GSD &amp; Suspected Wolf</title><meta content="Meet Minky, a DDR German Shepherd of extraordinary presence and questionable species classification. Dog? Wolf? The evidence is mounting." data-dev-file="/app/src/pages/index.tsx" data-dev-id="f4b9e4" data-dev-line="581" data-rh="true" name="description"/><meta content="Minky The Housewolfe — DDR GSD &amp; Suspected Wolf" data-dev-file="/app/src/pages/index.tsx" data-dev-id="f4b9e5" data-dev-line="582" data-rh="true" property="og:title"/><meta content="Meet Minky, a DDR German Shepherd of extraordinary presence and questionable species classification. Dog? Wolf? The evidence is mounting." data-dev-file="/app/src/pages/index.tsx" data-dev-id="f4b9e6" data-dev-line="583" data-rh="true" property="og:description"/><meta content="website" data-dev-file="/app/src/pages/index.tsx" data-dev-id="f4b9e7" data-dev-line="584" data-rh="true" property="og:type"/><meta content="summary_large_image" data-dev-file="/app/src/pages/index.tsx" data-dev-id="f4b9e8" data-dev-line="585" data-rh="true" name="twitter:card"/><script data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="b31892" data-dev-line="586" data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Minky The Housewolfe","description":"Meet Minky, a DDR German Shepherd of extraordinary presence and questionable species classification. Dog? Wolf? The evidence is mounting.","url":"https://minkythehousewolfe.com"}</script><style id="airo-dev-tools-tooltip-styles">
+  .airo-tooltip-root {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .airo-tooltip-bubble {
+    position: fixed;
+    transform: translateX(-50%) translateY(calc(-100% - 5px));
+    z-index: 10001;
+    padding: 8px 12px;
+    background: #1a1a1a;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: system-ui, sans-serif;
+    border-radius: 8px;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: airoTooltipFadeInUp 0.15s ease-out;
+  }
+
+  .airo-tooltip-bubble[data-exiting] {
+    animation: airoTooltipFadeOut var(--tooltip-exit-duration, 0.12s) ease-in forwards;
+  }
+
+  .airo-tooltip-arrow {
+    position: absolute;
+    left: var(--airo-tooltip-arrow-left, 50%);
+    bottom: -6px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #1a1a1a;
+  }
+
+  @keyframes airoTooltipFadeInUp {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(calc(-100% + 8px));
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(calc(-100% - 5px));
+    }
+  }
+
+  @keyframes airoTooltipFadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+</style><style id="edit-mode-keyframes">@keyframes editBarFadeIn { from { opacity: 0; scale: 0.92; } to { opacity: 1; scale: 1; } }</style><style>
+html { scroll-behavior: smooth; }
+img { background: linear-gradient(135deg, rgba(146,64,14,.35), rgba(4,120,87,.35)); }
+[data-dev-file], [data-dev-line], [data-dev-id], [data-dev-dynamic] { outline: none !important; }
+</style><link href="https://minkingdog.com/" rel="canonical"/><meta content="index,follow" name="robots"/></head>
+<body class="fs-unmask-airo-app-builder">
+<div class="fs-unmask-airo-app-builder" id="app"><div class="min-h-screen bg-background flex flex-col" data-dev-file="/app/src/layouts/Website.tsx" data-dev-id="24a66c" data-dev-line="74"><header class="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/40" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="d07c01" data-dev-line="17"><div class="container mx-auto px-4" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="24b095" data-dev-line="18"><div class="flex h-20 items-center justify-between" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="7b0429" data-dev-line="19"><a class="flex items-center gap-3 shrink-0" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="868d08" data-dev-line="20" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/"><img alt="Minky The Housewolfe" class="h-12 w-auto object-contain shrink-0" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="979716" data-dev-line="21" src="https://6nth74t60w.preview.c37.airoapp.ai/horizontal"/></a><nav class="hidden md:flex gap-8" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="5f48bf" data-dev-line="28"><a class="text-sm font-medium tracking-widest uppercase transition-colors hover:text-primary text-primary" data-dev-conformable-array="navItems" data-dev-conformable-id="L9C8" data-dev-conformable-page="src/layouts/parts/Header.tsx" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="090cde" data-dev-line="30" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/">Home</a><a class="text-sm font-medium tracking-widest uppercase transition-colors hover:text-primary text-foreground/70" data-dev-conformable-array="navItems" data-dev-conformable-id="L9C8" data-dev-conformable-page="src/layouts/parts/Header.tsx" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="090cde" data-dev-line="30" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/gallery">Gallery</a><a class="text-sm font-medium tracking-widest uppercase transition-colors hover:text-primary text-foreground/70" data-dev-conformable-array="navItems" data-dev-conformable-id="L9C8" data-dev-conformable-page="src/layouts/parts/Header.tsx" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="090cde" data-dev-line="30" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/evidence">The Evidence</a><a class="text-sm font-medium tracking-widest uppercase transition-colors hover:text-primary text-foreground/70" data-dev-conformable-array="navItems" data-dev-conformable-id="L9C8" data-dev-conformable-page="src/layouts/parts/Header.tsx" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="090cde" data-dev-line="30" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/about">About Minky</a></nav><button aria-label="Toggle menu" class="md:hidden p-2 hover:bg-primary/10 rounded-md transition-colors" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="8d9cf6" data-dev-line="44"><svg class="lucide lucide-menu" data-dev-file="/app/src/layouts/parts/Header.tsx" data-dev-id="828e5c" data-dev-line="49" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div></header><section class="relative h-screen min-h-[600px] overflow-hidden flex items-center justify-center" data-dev-file="/app/src/pages/index.tsx" data-dev-id="b943e2" data-dev-line="152"><div class="absolute inset-0 scale-110" data-dev-file="/app/src/pages/index.tsx" data-dev-id="769c7a" data-dev-line="154" style="transform: translateY(20%);"><img alt="Minky — DDR German Shepherd" class="w-full h-full object-cover" data-dev-file="/app/src/pages/index.tsx" data-dev-id="85f408" data-dev-line="155" fetchpriority="high" loading="eager" src="https://6nth74t60w.preview.c37.airoapp.ai/hero"/><div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-background" data-dev-file="/app/src/pages/index.tsx" data-dev-id="2987ce" data-dev-line="162"></div></div><div class="relative z-10 text-center px-4 max-w-4xl mx-auto" data-dev-file="/app/src/pages/index.tsx" data-dev-id="361d36" data-dev-line="166"><div data-dev-file="/app/src/pages/index.tsx" data-dev-id="5efe4e" data-dev-line="167" style="opacity: 1;"><p class="text-primary text-xs md:text-sm font-medium tracking-[0.4em] uppercase mb-6" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="9902b3" data-dev-line="172" style="opacity: 1; letter-spacing: 0.4em;">DDR German Shepherd · Beloved Companion · Suspected Wolf</p><h1 class="text-8xl md:text-[10rem] lg:text-[12rem] font-bold text-white leading-none tracking-tight mb-6" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="b5301c" data-dev-line="181" style="font-family: var(--font-heading); opacity: 1; transform: none;">MINKY</h1><p class="text-white/70 text-lg md:text-xl max-w-xl mx-auto leading-relaxed" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="9902b4" data-dev-line="191" style="opacity: 1; transform: none;">She has a dog bed. She has a name tag. She has a very suspicious relationship with the moon.</p></div><div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" data-dev-file="/app/src/pages/index.tsx" data-dev-id="5efe4f" data-dev-line="201" style="opacity: 1;"><span class="text-white/40 text-xs tracking-[0.3em] uppercase" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="23a852" data-dev-line="207">Scroll to investigate</span><div class="w-px h-8 bg-gradient-to-b from-white/40 to-transparent" data-dev-file="/app/src/pages/index.tsx" data-dev-id="732007" data-dev-line="208" style="transform: translateY(5.22329px);"></div></div></div></section><section class="py-24 bg-gradient-to-b from-background to-amber-950/20" data-dev-file="/app/src/pages/index.tsx" data-dev-id="b943e2" data-dev-line="231"><div class="container mx-auto px-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="361d36" data-dev-line="232"><div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center max-w-5xl mx-auto" data-dev-file="/app/src/pages/index.tsx" data-dev-id="4da58a" data-dev-line="233"><div class="relative" data-dev-file="/app/src/pages/index.tsx" data-dev-id="866f22" data-dev-line="235" style="opacity: 1; transform: none;"><div class="relative rounded-3xl overflow-hidden aspect-[3/4] shadow-2xl shadow-black/50" data-dev-file="/app/src/pages/index.tsx" data-dev-id="86b876" data-dev-line="242"><img alt="Minky the DDR German Shepherd — the real one" class="w-full h-full object-cover" data-dev-file="/app/src/pages/index.tsx" data-dev-id="521d04" data-dev-line="243" loading="lazy" src="https://6nth74t60w.preview.c37.airoapp.ai/20260528_190013(1).jpg"/><div class="absolute inset-0 bg-gradient-to-t from-amber-950/40 to-transparent" data-dev-file="/app/src/pages/index.tsx" data-dev-id="f5b0ca" data-dev-line="249"></div></div><div class="absolute -top-4 -right-4 w-12 h-12 text-primary/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="129" style="transform: translateY(-9.51599px);"><svg aria-hidden="true" class="w-full h-full" data-dev-file="/app/src/pages/index.tsx" data-dev-id="16c1d5" data-dev-line="134" fill="currentColor" viewbox="0 0 100 100"><ellipse cx="50" cy="68" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772034" data-dev-line="135" rx="22" ry="18"></ellipse><ellipse cx="25" cy="45" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772035" data-dev-line="136" rx="10" ry="12" transform="rotate(-15 25 45)"></ellipse><ellipse cx="40" cy="35" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772036" data-dev-line="137" rx="10" ry="12" transform="rotate(-5 40 35)"></ellipse><ellipse cx="60" cy="35" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772037" data-dev-line="138" rx="10" ry="12" transform="rotate(5 60 35)"></ellipse><ellipse cx="75" cy="45" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772038" data-dev-line="139" rx="10" ry="12" transform="rotate(15 75 45)"></ellipse></svg></div><div class="absolute -bottom-4 -left-4 w-8 h-8 text-primary/20" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="129" style="transform: translateY(-9.51599px);"><svg aria-hidden="true" class="w-full h-full" data-dev-file="/app/src/pages/index.tsx" data-dev-id="16c1d5" data-dev-line="134" fill="currentColor" viewbox="0 0 100 100"><ellipse cx="50" cy="68" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772034" data-dev-line="135" rx="22" ry="18"></ellipse><ellipse cx="25" cy="45" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772035" data-dev-line="136" rx="10" ry="12" transform="rotate(-15 25 45)"></ellipse><ellipse cx="40" cy="35" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772036" data-dev-line="137" rx="10" ry="12" transform="rotate(-5 40 35)"></ellipse><ellipse cx="60" cy="35" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772037" data-dev-line="138" rx="10" ry="12" transform="rotate(5 60 35)"></ellipse><ellipse cx="75" cy="45" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772038" data-dev-line="139" rx="10" ry="12" transform="rotate(15 75 45)"></ellipse></svg></div></div><div data-dev-file="/app/src/pages/index.tsx" data-dev-id="866f23" data-dev-line="257" style="opacity: 1; transform: none;"><p class="text-primary text-xs tracking-[0.35em] uppercase font-medium mb-3" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c32944" data-dev-line="263">Meet the subject</p><h2 class="text-5xl md:text-6xl font-bold text-foreground mb-2 leading-tight" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="242d0e" data-dev-line="266" style="font-family: var(--font-heading);">About Minky</h2><p class="text-foreground/60 mb-8 leading-relaxed" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c32945" data-dev-line="272">A DDR (East German) German Shepherd of extraordinary presence, questionable motives, and undeniable charm. She lives in a house. Allegedly.</p><div class="grid grid-cols-1 gap-3" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="80f537" data-dev-line="276"><div class="flex gap-4 items-baseline border-b border-border/20 pb-3" data-dev-conformable-array="stats" data-dev-conformable-id="L221C8" data-dev-conformable-page="src/pages/index.tsx" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c90fef" data-dev-line="278" style="opacity: 1; transform: none;"><span class="text-xs tracking-widest uppercase text-foreground/40 w-32 shrink-0" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f2" data-dev-line="286">Name</span><span class="text-sm text-foreground/90 font-medium" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f3" data-dev-line="289">Minky</span></div><div class="flex gap-4 items-baseline border-b border-border/20 pb-3" data-dev-conformable-array="stats" data-dev-conformable-id="L221C8" data-dev-conformable-page="src/pages/index.tsx" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c90fef" data-dev-line="278" style="opacity: 1; transform: none;"><span class="text-xs tracking-widest uppercase text-foreground/40 w-32 shrink-0" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f2" data-dev-line="286">Breed</span><span class="text-sm text-foreground/90 font-medium" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f3" data-dev-line="289">DDR GSD</span></div><div class="flex gap-4 items-baseline border-b border-border/20 pb-3" data-dev-conformable-array="stats" data-dev-conformable-id="L221C8" data-dev-conformable-page="src/pages/index.tsx" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c90fef" data-dev-line="278" style="opacity: 1; transform: none;"><span class="text-xs tracking-widest uppercase text-foreground/40 w-32 shrink-0" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f2" data-dev-line="286">Classification</span><span class="text-sm text-foreground/90 font-medium" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f3" data-dev-line="289">TBD</span></div><div class="flex gap-4 items-baseline border-b border-border/20 pb-3" data-dev-conformable-array="stats" data-dev-conformable-id="L221C8" data-dev-conformable-page="src/pages/index.tsx" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c90fef" data-dev-line="278" style="opacity: 1; transform: none;"><span class="text-xs tracking-widest uppercase text-foreground/40 w-32 shrink-0" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f2" data-dev-line="286">Hobbies</span><span class="text-sm text-foreground/90 font-medium" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f3" data-dev-line="289">Staring into the void, Zoomies</span></div><div class="flex gap-4 items-baseline border-b border-border/20 pb-3" data-dev-conformable-array="stats" data-dev-conformable-id="L221C8" data-dev-conformable-page="src/pages/index.tsx" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c90fef" data-dev-line="278" style="opacity: 1; transform: none;"><span class="text-xs tracking-widest uppercase text-foreground/40 w-32 shrink-0" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f2" data-dev-line="286">Known Aliases</span><span class="text-sm text-foreground/90 font-medium" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f3" data-dev-line="289">The Housewolfe, Minkster, Ma'am</span></div><div class="flex gap-4 items-baseline border-b border-border/20 pb-3" data-dev-conformable-array="stats" data-dev-conformable-id="L221C8" data-dev-conformable-page="src/pages/index.tsx" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c90fef" data-dev-line="278" style="opacity: 1; transform: none;"><span class="text-xs tracking-widest uppercase text-foreground/40 w-32 shrink-0" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f2" data-dev-line="286">Threat Level</span><span class="text-sm text-foreground/90 font-medium" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="95a5f3" data-dev-line="289">Adorable / Unknowable</span></div></div></div></div></div></section><section class="py-24 relative overflow-hidden" data-dev-file="/app/src/pages/index.tsx" data-dev-id="b943e2" data-dev-line="320"><div class="absolute inset-0" data-dev-file="/app/src/pages/index.tsx" data-dev-id="361d36" data-dev-line="322"><img alt="" aria-hidden="true" class="w-full h-full object-cover opacity-10" data-dev-file="/app/src/pages/index.tsx" data-dev-id="aa11c4" data-dev-line="323" loading="lazy" src="https://6nth74t60w.preview.c37.airoapp.ai/wolf-section"/><div class="absolute inset-0 bg-gradient-to-b from-background via-emerald-950/60 to-background" data-dev-file="/app/src/pages/index.tsx" data-dev-id="4da58a" data-dev-line="330"></div></div><div class="relative z-10 container mx-auto px-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="361d37" data-dev-line="333"><div class="text-center max-w-2xl mx-auto mb-16" data-dev-file="/app/src/pages/index.tsx" data-dev-id="47e24b" data-dev-line="335"><p class="text-primary text-xs tracking-[0.35em] uppercase font-medium mb-3" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="d14e90" data-dev-line="336" style="opacity: 1;">The Great Debate</p><h2 class="text-5xl md:text-6xl font-bold text-foreground mb-4 leading-tight" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="f6fbda" data-dev-line="344" style="font-family: var(--font-heading); opacity: 1; transform: none;">Is She a Housewolfe?</h2><p class="text-foreground/60 leading-relaxed" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="d14e91" data-dev-line="354" style="opacity: 1;">The evidence has been gathered. The jury is still out. The subject is currently staring at you from across the room.</p></div><div class="max-w-xl mx-auto mb-16 bg-foreground/5 border border-border/20 rounded-2xl p-8" data-dev-file="/app/src/pages/index.tsx" data-dev-id="9f37ef" data-dev-line="366" style="opacity: 1; transform: none;"><div class="w-full max-w-xl mx-auto" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a2cc50" data-dev-line="28"><div class="flex justify-between items-baseline mb-3" data-dev-file="/app/src/pages/index.tsx" data-dev-id="abc024" data-dev-line="29"><span class="text-xs tracking-[0.3em] uppercase text-foreground/60 font-medium" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="336887" data-dev-line="30">Wolf Probability</span><span class="text-4xl font-bold text-primary tabular-nums" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="336888" data-dev-line="33" style="font-family: var(--font-heading);">73%</span></div><div class="relative h-3 rounded-full bg-foreground/10 overflow-hidden" data-dev-file="/app/src/pages/index.tsx" data-dev-id="abc025" data-dev-line="40"><div class="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-primary/70 to-primary" data-dev-file="/app/src/pages/index.tsx" data-dev-id="61ad9d" data-dev-line="41" style="width: 73%;"></div></div><p class="mt-3 text-xs text-foreground/40 italic text-right tracking-wide" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="f454f1" data-dev-line="47">and climbing...</p></div></div><div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto" data-dev-file="/app/src/pages/index.tsx" data-dev-id="47e24c" data-dev-line="377"><div data-dev-file="/app/src/pages/index.tsx" data-dev-id="606320" data-dev-line="379"><h3 class="text-amber-400 text-xs tracking-[0.35em] uppercase font-bold mb-5 flex items-center gap-3" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="e26870" data-dev-line="380" style="opacity: 1;"><span class="flex-1 h-px bg-amber-800/40" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="e84353" data-dev-line="386"></span>Evidence She Is A Dog<span class="flex-1 h-px bg-amber-800/40" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="e84354" data-dev-line="388"></span></h3><div class="flex flex-col gap-3" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="1332f4" data-dev-line="390"><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-amber-950/30 border-amber-800/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-amber-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit A</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">Has a registered dog license. (Self-obtained? Unclear.)</p></div><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-amber-950/30 border-amber-800/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-amber-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit B</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">Responds to "Minky." Most of the time. When she feels like it.</p></div><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-amber-950/30 border-amber-800/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-amber-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit C</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">Has a dog bed. Refuses to use it. Prefers the couch. The good couch.</p></div><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-amber-950/30 border-amber-800/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-amber-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit D</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">Wags her tail. Experts note wolves also wag tails. Investigation ongoing.</p></div><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-amber-950/30 border-amber-800/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-amber-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit E</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">Eats kibble. Has been observed staring at kibble for 4 minutes before eating it, as if considering her options.</p></div></div></div><div data-dev-file="/app/src/pages/index.tsx" data-dev-id="606321" data-dev-line="398"><h3 class="text-emerald-400 text-xs tracking-[0.35em] uppercase font-bold mb-5 flex items-center gap-3" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="4171f1" data-dev-line="399" style="opacity: 1;"><span class="flex-1 h-px bg-emerald-800/40" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="0f71b4" data-dev-line="405"></span>Evidence She Is A Wolf<span class="flex-1 h-px bg-emerald-800/40" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="0f71b5" data-dev-line="407"></span></h3><div class="flex flex-col gap-3" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="0d6fb5" data-dev-line="409"><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-emerald-950/40 border-emerald-700/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-emerald-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit I</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">Howls at the moon. Also at the mailman. Also at a leaf that moved funny.</p></div><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-emerald-950/40 border-emerald-700/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-emerald-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit II</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">Eyes glow in the dark. "That's just tapetum lucidum," say scientists. Sure it is.</p></div><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-emerald-950/40 border-emerald-700/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-emerald-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit III</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">DDR lineage traces directly to working lines bred for extreme drive, intelligence, and — we're just saying — wolf-adjacent energy.</p></div><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-emerald-950/40 border-emerald-700/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-emerald-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit IV</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">Has never once been photographed blinking. Not once.</p></div><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-emerald-950/40 border-emerald-700/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-emerald-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit V</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">Stares at walls for extended periods. Something is in those walls. She knows.</p></div><div class="rounded-2xl border p-5 flex flex-col gap-2 bg-emerald-950/40 border-emerald-700/30" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="68" style="opacity: 1; transform: none;"><span class="text-xs font-bold tracking-[0.25em] uppercase text-emerald-400/70" data-dev-bound-expression-hash="sha256:1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="805cb7" data-dev-line="81">Exhibit VI</span><p class="text-sm text-foreground/80 leading-relaxed" data-dev-bound-expression-hash="sha256:982d9e3eb996f559e633f4d194def3761d909f5a3b647d1a851fead67c32c9d1" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a0f4f5" data-dev-line="88">Survived a thunderstorm without flinching. A thunderstorm. Who does that?</p></div></div></div></div><div class="text-center mt-16 max-w-lg mx-auto" data-dev-file="/app/src/pages/index.tsx" data-dev-id="9f37f0" data-dev-line="418" style="opacity: 1; transform: none;"><p class="text-foreground/40 text-sm italic leading-relaxed" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="7d9091" data-dev-line="425">"The investigation is ongoing. Minky has been informed of the charges. She blinked once, slowly, and walked away."</p><p class="text-foreground/25 text-xs mt-2 tracking-widest uppercase" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="7d9092" data-dev-line="428">— Official Case Notes</p></div></div></section><section class="py-24 bg-gradient-to-b from-background to-amber-950/10" data-dev-file="/app/src/pages/index.tsx" data-dev-id="b943e2" data-dev-line="448"><div class="container mx-auto px-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="361d36" data-dev-line="449"><div class="text-center max-w-xl mx-auto mb-12" data-dev-file="/app/src/pages/index.tsx" data-dev-id="4da58a" data-dev-line="450"><p class="text-primary text-xs tracking-[0.35em] uppercase font-medium mb-3" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="7d3b2b" data-dev-line="451">Field Documentation</p><h2 class="text-5xl md:text-6xl font-bold text-foreground mb-4" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="207bd5" data-dev-line="454" style="font-family: var(--font-heading);">Photo Evidence</h2><p class="text-foreground/60" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="7d3b2c" data-dev-line="460">Hover over each photo for expert analysis. Results may be unsettling.</p></div><div class="max-w-5xl mx-auto mb-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="5efe4e" data-dev-line="466" style="opacity: 1; transform: none;"><div class="relative overflow-hidden rounded-2xl group cursor-pointer aspect-[16/9] md:aspect-[21/9]" data-dev-file="/app/src/pages/index.tsx" data-dev-id="50f8a2" data-dev-line="473"><img alt="Minky — the real housewolfe, caught in a rare moment of happiness" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" data-dev-file="/app/src/pages/index.tsx" data-dev-id="cece30" data-dev-line="474" loading="lazy" src="https://6nth74t60w.preview.c37.airoapp.ai/20260528_190013(1).jpg"/><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-6" data-dev-file="/app/src/pages/index.tsx" data-dev-id="7261f6" data-dev-line="480"><span class="text-primary text-xs tracking-[0.3em] uppercase font-bold mb-1" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="1b8a19" data-dev-line="481">Official Documentation</span><p class="text-white font-bold text-lg md:text-2xl" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="424d97" data-dev-line="482" style="font-family: var(--font-heading);">The Subject Herself</p><p class="text-white/70 text-sm italic mt-1" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="424d98" data-dev-line="483">Caught mid-zoomie. Note the suspicious grin. Wolves smile like that.</p></div></div></div><div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="4da58b" data-dev-line="489"><div class="relative overflow-hidden rounded-2xl group cursor-pointer col-span-2 md:col-span-1 aspect-[4/3] md:row-span-2 md:aspect-auto" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="105" style="opacity: 1; transform: none;"><img alt="The Zoomies Phase" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-dev-file="/app/src/pages/index.tsx" data-dev-id="5cdd62" data-dev-line="112" loading="lazy" src="https://6nth74t60w.preview.c37.airoapp.ai/gallery-1"/><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="007128" data-dev-line="118"><p class="text-white font-semibold text-sm" data-dev-bound-expression-hash="sha256:176ca52906b001daa816562988464d2af4e18590a85bc7090e28ad3faccb7f8c" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5c9" data-dev-line="119">The Zoomies Phase</p><p class="text-primary text-xs italic mt-1" data-dev-bound-expression-hash="sha256:c9b956c92315dea1709d935c4cfabe78693a0ae08a5461a556a1774d6fd2aa3b" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5ca" data-dev-line="120">Wolves also run. Coincidence?</p></div></div><div class="relative overflow-hidden rounded-2xl group cursor-pointer aspect-[4/3]" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="105" style="opacity: 1; transform: none;"><img alt="Claiming the Couch" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-dev-file="/app/src/pages/index.tsx" data-dev-id="5cdd62" data-dev-line="112" loading="lazy" src="https://6nth74t60w.preview.c37.airoapp.ai/gallery-2"/><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="007128" data-dev-line="118"><p class="text-white font-semibold text-sm" data-dev-bound-expression-hash="sha256:176ca52906b001daa816562988464d2af4e18590a85bc7090e28ad3faccb7f8c" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5c9" data-dev-line="119">Claiming the Couch</p><p class="text-primary text-xs italic mt-1" data-dev-bound-expression-hash="sha256:c9b956c92315dea1709d935c4cfabe78693a0ae08a5461a556a1774d6fd2aa3b" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5ca" data-dev-line="120">Territorial behavior noted.</p></div></div><div class="relative overflow-hidden rounded-2xl group cursor-pointer aspect-square" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="105" style="opacity: 1; transform: none;"><img alt="The Thousand-Yard Stare" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-dev-file="/app/src/pages/index.tsx" data-dev-id="5cdd62" data-dev-line="112" loading="lazy" src="https://6nth74t60w.preview.c37.airoapp.ai/gallery-3"/><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="007128" data-dev-line="118"><p class="text-white font-semibold text-sm" data-dev-bound-expression-hash="sha256:176ca52906b001daa816562988464d2af4e18590a85bc7090e28ad3faccb7f8c" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5c9" data-dev-line="119">The Thousand-Yard Stare</p><p class="text-primary text-xs italic mt-1" data-dev-bound-expression-hash="sha256:c9b956c92315dea1709d935c4cfabe78693a0ae08a5461a556a1774d6fd2aa3b" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5ca" data-dev-line="120">She sees things we cannot.</p></div></div></div><div class="max-w-5xl mx-auto mb-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="4da58c" data-dev-line="496"><div class="relative overflow-hidden rounded-2xl group cursor-pointer w-full aspect-[21/7]" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="105" style="opacity: 1; transform: none;"><img alt="Playtime (Allegedly)" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-dev-file="/app/src/pages/index.tsx" data-dev-id="5cdd62" data-dev-line="112" loading="lazy" src="https://6nth74t60w.preview.c37.airoapp.ai/gallery-4"/><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="007128" data-dev-line="118"><p class="text-white font-semibold text-sm" data-dev-bound-expression-hash="sha256:176ca52906b001daa816562988464d2af4e18590a85bc7090e28ad3faccb7f8c" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5c9" data-dev-line="119">Playtime (Allegedly)</p><p class="text-primary text-xs italic mt-1" data-dev-bound-expression-hash="sha256:c9b956c92315dea1709d935c4cfabe78693a0ae08a5461a556a1774d6fd2aa3b" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5ca" data-dev-line="120">Or training. Hard to say.</p></div></div></div><div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto" data-dev-file="/app/src/pages/index.tsx" data-dev-id="4da58d" data-dev-line="501"><div class="relative overflow-hidden rounded-2xl group cursor-pointer aspect-[4/3]" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="105" style="opacity: 1; transform: none;"><img alt="Surveilling the Perimeter" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-dev-file="/app/src/pages/index.tsx" data-dev-id="5cdd62" data-dev-line="112" loading="lazy" src="https://6nth74t60w.preview.c37.airoapp.ai/gallery-5"/><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="007128" data-dev-line="118"><p class="text-white font-semibold text-sm" data-dev-bound-expression-hash="sha256:176ca52906b001daa816562988464d2af4e18590a85bc7090e28ad3faccb7f8c" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5c9" data-dev-line="119">Surveilling the Perimeter</p><p class="text-primary text-xs italic mt-1" data-dev-bound-expression-hash="sha256:c9b956c92315dea1709d935c4cfabe78693a0ae08a5461a556a1774d6fd2aa3b" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5ca" data-dev-line="120">Monitoring the territory. Classic wolf behavior.</p></div></div><div class="relative overflow-hidden rounded-2xl group cursor-pointer aspect-[4/3]" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="105" style="opacity: 1; transform: none;"><img alt="Winter Mode: Activated" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-dev-file="/app/src/pages/index.tsx" data-dev-id="5cdd62" data-dev-line="112" loading="lazy" src="https://6nth74t60w.preview.c37.airoapp.ai/gallery-6"/><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="007128" data-dev-line="118"><p class="text-white font-semibold text-sm" data-dev-bound-expression-hash="sha256:176ca52906b001daa816562988464d2af4e18590a85bc7090e28ad3faccb7f8c" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5c9" data-dev-line="119">Winter Mode: Activated</p><p class="text-primary text-xs italic mt-1" data-dev-bound-expression-hash="sha256:c9b956c92315dea1709d935c4cfabe78693a0ae08a5461a556a1774d6fd2aa3b" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5ca" data-dev-line="120">Thrives in the cold. Suspicious.</p></div></div><div class="relative overflow-hidden rounded-2xl group cursor-pointer aspect-[4/3]" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="105" style="opacity: 1; transform: none;"><img alt="Resting (Recharging)" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-dev-file="/app/src/pages/index.tsx" data-dev-id="5cdd62" data-dev-line="112" loading="lazy" src="https://6nth74t60w.preview.c37.airoapp.ai/gallery-7"/><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4" data-dev-file="/app/src/pages/index.tsx" data-dev-id="007128" data-dev-line="118"><p class="text-white font-semibold text-sm" data-dev-bound-expression-hash="sha256:176ca52906b001daa816562988464d2af4e18590a85bc7090e28ad3faccb7f8c" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5c9" data-dev-line="119">Resting (Recharging)</p><p class="text-primary text-xs italic mt-1" data-dev-bound-expression-hash="sha256:c9b956c92315dea1709d935c4cfabe78693a0ae08a5461a556a1774d6fd2aa3b" data-dev-bound-source-kind="bound-expression" data-dev-bound-text="true" data-dev-dynamic="true" data-dev-file="/app/src/pages/index.tsx" data-dev-id="c8a5ca" data-dev-line="120">Even wolves need to nap. Probably.</p></div></div></div><div class="text-center mt-10" data-dev-file="/app/src/pages/index.tsx" data-dev-id="4da58e" data-dev-line="507"><a class="inline-flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-primary hover:text-primary/80 transition-colors border border-primary/30 hover:border-primary/60 px-6 py-3 rounded-full" data-dev-file="/app/src/pages/index.tsx" data-dev-id="f30acd" data-dev-line="508" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/gallery">View Full Gallery</a></div></div></section><section class="py-24 relative overflow-hidden" data-dev-file="/app/src/pages/index.tsx" data-dev-id="b943e2" data-dev-line="523"><div class="absolute inset-0 bg-gradient-to-b from-amber-950/10 to-background" data-dev-file="/app/src/pages/index.tsx" data-dev-id="361d36" data-dev-line="524"></div><div class="relative z-10 container mx-auto px-4 text-center max-w-2xl mx-auto" data-dev-file="/app/src/pages/index.tsx" data-dev-id="361d37" data-dev-line="525"><div class="w-10 h-10 text-primary/20 mx-auto mb-6" data-dev-file="/app/src/pages/index.tsx" data-dev-id="980a54" data-dev-line="129" style="transform: translateY(-9.51599px);"><svg aria-hidden="true" class="w-full h-full" data-dev-file="/app/src/pages/index.tsx" data-dev-id="16c1d5" data-dev-line="134" fill="currentColor" viewbox="0 0 100 100"><ellipse cx="50" cy="68" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772034" data-dev-line="135" rx="22" ry="18"></ellipse><ellipse cx="25" cy="45" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772035" data-dev-line="136" rx="10" ry="12" transform="rotate(-15 25 45)"></ellipse><ellipse cx="40" cy="35" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772036" data-dev-line="137" rx="10" ry="12" transform="rotate(-5 40 35)"></ellipse><ellipse cx="60" cy="35" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772037" data-dev-line="138" rx="10" ry="12" transform="rotate(5 60 35)"></ellipse><ellipse cx="75" cy="45" data-dev-file="/app/src/pages/index.tsx" data-dev-id="772038" data-dev-line="139" rx="10" ry="12" transform="rotate(15 75 45)"></ellipse></svg></div><h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="a8f8c6" data-dev-line="527" style="font-family: var(--font-heading); opacity: 1; transform: none;">The Investigation Continues...</h2><p class="text-foreground/60 mb-10 leading-relaxed" data-dev-editable="text" data-dev-file="/app/src/pages/index.tsx" data-dev-id="815dfc" data-dev-line="537" style="opacity: 1;">New evidence emerges daily. The wolf probability meter has never gone down. Not once.</p><div class="flex flex-col sm:flex-row gap-4 justify-center" data-dev-file="/app/src/pages/index.tsx" data-dev-id="9f37ef" data-dev-line="546" style="opacity: 0; transform: translateY(10px);"><a class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold tracking-widest uppercase text-sm px-8 py-4 rounded-full hover:bg-primary/90 transition-colors" data-dev-file="/app/src/pages/index.tsx" data-dev-id="7e060e" data-dev-line="553" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/evidence">Review The Evidence</a><a class="inline-flex items-center justify-center gap-2 border border-border/40 text-foreground/70 font-medium tracking-widest uppercase text-sm px-8 py-4 rounded-full hover:border-primary/40 hover:text-foreground transition-colors" data-dev-file="/app/src/pages/index.tsx" data-dev-id="7e060f" data-dev-line="559" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/gallery">See The Gallery</a></div></div></section><footer class="mt-auto bg-[#0a0f0b] border-t border-border/20" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="42358d" data-dev-line="24"><div class="container mx-auto px-4 py-10" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="166321" data-dev-line="25"><div class="flex flex-col items-center gap-6" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="436fb5" data-dev-line="26"><div class="flex gap-3 opacity-20" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="b49b49" data-dev-line="28"><svg aria-hidden="true" class="w-6 h-6 text-primary rotate-[-15deg]" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="287d6e" data-dev-line="5" fill="currentColor" viewbox="0 0 100 100"><ellipse cx="50" cy="68" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef0d" data-dev-line="12" rx="22" ry="18"></ellipse><ellipse cx="25" cy="45" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef0e" data-dev-line="14" rx="10" ry="12" transform="rotate(-15 25 45)"></ellipse><ellipse cx="40" cy="35" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef0f" data-dev-line="15" rx="10" ry="12" transform="rotate(-5 40 35)"></ellipse><ellipse cx="60" cy="35" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef10" data-dev-line="16" rx="10" ry="12" transform="rotate(5 60 35)"></ellipse><ellipse cx="75" cy="45" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef11" data-dev-line="17" rx="10" ry="12" transform="rotate(15 75 45)"></ellipse></svg><svg aria-hidden="true" class="w-8 h-8 text-primary" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="287d6e" data-dev-line="5" fill="currentColor" viewbox="0 0 100 100"><ellipse cx="50" cy="68" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef0d" data-dev-line="12" rx="22" ry="18"></ellipse><ellipse cx="25" cy="45" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef0e" data-dev-line="14" rx="10" ry="12" transform="rotate(-15 25 45)"></ellipse><ellipse cx="40" cy="35" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef0f" data-dev-line="15" rx="10" ry="12" transform="rotate(-5 40 35)"></ellipse><ellipse cx="60" cy="35" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef10" data-dev-line="16" rx="10" ry="12" transform="rotate(5 60 35)"></ellipse><ellipse cx="75" cy="45" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef11" data-dev-line="17" rx="10" ry="12" transform="rotate(15 75 45)"></ellipse></svg><svg aria-hidden="true" class="w-6 h-6 text-primary rotate-[15deg]" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="287d6e" data-dev-line="5" fill="currentColor" viewbox="0 0 100 100"><ellipse cx="50" cy="68" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef0d" data-dev-line="12" rx="22" ry="18"></ellipse><ellipse cx="25" cy="45" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef0e" data-dev-line="14" rx="10" ry="12" transform="rotate(-15 25 45)"></ellipse><ellipse cx="40" cy="35" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef0f" data-dev-line="15" rx="10" ry="12" transform="rotate(-5 40 35)"></ellipse><ellipse cx="60" cy="35" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef10" data-dev-line="16" rx="10" ry="12" transform="rotate(5 60 35)"></ellipse><ellipse cx="75" cy="45" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="96ef11" data-dev-line="17" rx="10" ry="12" transform="rotate(15 75 45)"></ellipse></svg></div><img alt="Minky The Housewolfe" class="h-10 w-auto object-contain opacity-80" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="110783" data-dev-line="35" src="https://6nth74t60w.preview.c37.airoapp.ai/horizontal"/><nav class="flex gap-8 flex-wrap justify-center" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="652d4b" data-dev-line="42"><a class="text-xs font-medium tracking-widest uppercase text-foreground/40 hover:text-primary transition-colors" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="06dbea" data-dev-line="49" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/">Home</a><a class="text-xs font-medium tracking-widest uppercase text-foreground/40 hover:text-primary transition-colors" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="06dbea" data-dev-line="49" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/gallery">Gallery</a><a class="text-xs font-medium tracking-widest uppercase text-foreground/40 hover:text-primary transition-colors" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="06dbea" data-dev-line="49" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/evidence">The Evidence</a><a class="text-xs font-medium tracking-widest uppercase text-foreground/40 hover:text-primary transition-colors" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="06dbea" data-dev-line="49" data-discover="true" href="https://6nth74t60w.preview.c37.airoapp.ai/about">About Minky</a></nav><div class="w-24 h-px bg-border/30" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="b49b4a" data-dev-line="60"></div><p class="text-xs text-foreground/30 text-center tracking-wide" data-dev-dynamic="true" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="5222d6" data-dev-line="63">Minky The Housewolfe © 2026. <span class="text-primary/50 italic" data-dev-editable="text" data-dev-file="/app/src/layouts/parts/Footer.tsx" data-dev-id="5d8ef9" data-dev-line="65">She knows what she did.</span></p></div></div></footer></div><div aria-describedby="cookie-banner-description" aria-label="Cookie consent banner" aria-live="polite" class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg" data-airo-non-editable="true" data-dev-file="/app/src/components/CookieBanner.tsx" data-dev-id="89ecde" data-dev-line="171" role="alertdialog"><div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8" data-dev-file="/app/src/components/CookieBanner.tsx" data-dev-id="389332" data-dev-line="179"><div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" data-dev-file="/app/src/components/CookieBanner.tsx" data-dev-id="e7a886" data-dev-line="180"><div class="flex-1" data-dev-file="/app/src/components/CookieBanner.tsx" data-dev-id="ee6cda" data-dev-line="181"><h3 class="text-sm font-semibold text-gray-900 mb-1" data-dev-editable="text" data-dev-file="/app/src/components/CookieBanner.tsx" data-dev-id="f25966" data-dev-line="182">Cookie Consent</h3><p class="text-sm text-gray-600" data-dev-editable="text" data-dev-file="/app/src/components/CookieBanner.tsx" data-dev-id="d12a7b" data-dev-line="183" id="cookie-banner-description">We serve cookies. We use tools, such as cookies, to enable essential services and functionality on our site and to collect data on how visitors interact with our site, products and services. By clicking Accept, you agree to our use of these tools for advertising, analytics and support.</p></div><div class="flex items-center gap-3 flex-shrink-0" data-dev-file="/app/src/components/CookieBanner.tsx" data-dev-id="ee6cdb" data-dev-line="187"><button class="inline-flex items-center justify-center gap-2 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-9 rounded-md px-3 whitespace-nowrap" data-dev-file="/app/src/components/CookieBanner.tsx" data-dev-id="7451c8" data-dev-line="188">Decline</button><button class="inline-flex items-center justify-center gap-2 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3 whitespace-nowrap" data-dev-file="/app/src/components/CookieBanner.tsx" data-dev-id="7451c9" data-dev-line="189">Accept</button></div></div></div></div></div>
+
+
+</body></html>
